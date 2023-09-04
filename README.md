@@ -3,8 +3,10 @@ Game for programming exam
 
 This is a small game made for our programming class.
 
-Specifications we set for ourselves while creating it:
+#Game explained
 
 
-Credits:
-Jepp8530 - For all his amazing work
+#Actor table
+
+
+#MuSCoW
