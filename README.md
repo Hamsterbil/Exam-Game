@@ -16,7 +16,6 @@ A combination of the idle genre with strategic elements using Hexagons.
 > **Interactions:** Players could be able to click on enemy cities to initiate actions. 
 
 > **Upgrades:** Players would be able to buy upgrades to enhance their city's capabilities. 
-<<<<<<< HEAD
 
 ### Enemy:
 
@@ -50,7 +49,7 @@ A combination of the idle genre with strategic elements using Hexagons.
 ## Would
 
 # Class Diagram - PUML
-=======
+
 
 ### Enemy:
 
@@ -82,4 +81,3 @@ A combination of the idle genre with strategic elements using Hexagons.
 ## Could
 
 ## Would
->>>>>>> ReadMe
