@@ -49,7 +49,6 @@ A combination of the idle genre with strategic elements using Hexagons.
 
 ## Would
 
-
 # Class Diagram - PUML
 =======
 
@@ -83,5 +82,4 @@ A combination of the idle genre with strategic elements using Hexagons.
 ## Could
 
 ## Would
-
-# Class Diagram - PUML
+>>>>>>> ReadMe
