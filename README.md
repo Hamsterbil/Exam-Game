@@ -16,6 +16,7 @@ A combination of the idle genre with strategic elements using Hexagons.
 > **Interactions:** Players could be able to click on enemy cities to initiate actions. 
 
 > **Upgrades:** Players would be able to buy upgrades to enhance their city's capabilities. 
+<<<<<<< HEAD
 
 ### Enemy:
 
@@ -49,3 +50,36 @@ A combination of the idle genre with strategic elements using Hexagons.
 ## Would
 
 # Class Diagram - PUML
+=======
+
+### Enemy:
+
+> **Movement:** Enemies must be able to move in the game world. 
+
+> **Interacting:** Enemies could be able to take actions in the game world. 
+
+### Time:
+
+> **Resource Generation:** Time must generate cash, population passively. 
+
+> **Millitary Generation:** Time should be able to generate military resources. 
+
+> **Happiness:** Time would be able to generate happiness, influenced by perks and upgrades. 
+
+### Victory:
+
+> Victory conditions would be available to allow players to win. 
+
+
+# Actor table
+// Insert stuff
+
+# MuSCoW
+## Must
+
+## Should
+
+## Could
+
+## Would
+>>>>>>> ReadMe
