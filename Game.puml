@@ -1,0 +1,54 @@
+@startuml
+
+
+class Player
+{
+    
+}
+
+Player <|-- Movement
+Player <|-- Time
+Player <|-- Upgrades
+
+
+Class Movement
+{
+
+}
+
+class Upgrades
+{
+    +MilitaryPerk: string
+    +EconomicPerk: string
+    +HappinessPerk: string
+    
+    +void MIlitaryPerk()
+    +Void EconomicPerk()
+    +Void HappinessPerk()
+}
+
+class Enemy
+{
+
+}
+
+Class Time
+{
+    Cash generation
+    Population generation
+    Happiness generation
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml
