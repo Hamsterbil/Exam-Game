@@ -9,7 +9,8 @@ class Player
 Player <|-- Movement
 Player <|-- Time
 Player <|-- Upgrades
-
+Tiles <|-- Enemy
+Tiles <|-- Player
 
 Class Movement
 {
@@ -32,23 +33,16 @@ class Enemy
 
 }
 
-Class Time
+class Tiles
 {
-    Cash generation
-    Population generation
-    Happiness generation
+    +Void GrassTile()
 }
 
-
-
-
-
-
-
-
-
-
-
-
+Class Time
+{
+    +Void Cash()
+    +Void Happiness()
+    +Void Military()
+}
 
 @enduml
