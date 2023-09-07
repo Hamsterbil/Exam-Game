@@ -1,19 +1,28 @@
 @startuml
 
 
-class Player
-{
-    
-}
-
 Player <|-- Movement
 Player <|-- Time
 Player <|-- Upgrades
-Tiles <|-- Enemy
+Enemy <|-- EnemyMovement
 Tiles <|-- Player
+Tiles <|-- Enemy
+
+class Player
+{
+    +void OwnTiles()
+    +string CityInfo
+}
 
 Class Movement
 {
+    +void TakeTile()
+}
+
+Class EnemyMovement
+{
+  +Void TimeToTake()
+   +Void TakeTile()
 
 }
 
@@ -30,7 +39,7 @@ class Upgrades
 
 class Enemy
 {
-
+    +void OwnTiles()
 }
 
 class Tiles
