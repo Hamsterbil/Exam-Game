@@ -11,7 +11,7 @@ Tiles <|-- Enemy
 class Player
 {
     +void OwnTiles()
-    +string CityInfo
+    +CityInfo: string
 }
 
 Class Movement
@@ -21,8 +21,8 @@ Class Movement
 
 Class EnemyMovement
 {
-  +Void TimeToTake()
-   +Void TakeTile()
+    +Void TimeToTake()
+    +Void TakeTile()
 
 }
 
@@ -31,7 +31,7 @@ class Upgrades
     +MilitaryPerk: string
     +EconomicPerk: string
     +HappinessPerk: string
-    
+
     +void MIlitaryPerk()
     +Void EconomicPerk()
     +Void HappinessPerk()
