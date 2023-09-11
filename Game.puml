@@ -22,33 +22,34 @@ class Envoriment
     +Void SpawnPlayer()
     +Void SpawnEnemy()
 
-    +int TileCost
+    
     +string TileInfo
+    +int TileCost
 }
 
 class GrassTile
 {
-
+    
 }
 
 class WaterTile
 {
-
+  
 }
 
 class MountainTile
 {
-
+ 
 }
 
 class DesertTile
 {
-
+ 
 }
 
 class ForestTile
 {
-
+  
 }
 
 class SnowTile
@@ -63,7 +64,7 @@ class CityTile
 
 class TreasureTile
 {
-
+  
 }
 class Player
 {
