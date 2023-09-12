@@ -1,27 +1,93 @@
 @startuml
 
 
-class Player
+Player <-- Movement
+Player <-- Time
+Player <-- Upgrades
+Enemy <-- EnemyMovement
+Envoriment <-- Player
+Envoriment <-- Enemy
+Envoriment <|-- GrassTile
+Envoriment <|-- WaterTile
+Envoriment <|-- MountainTile
+Envoriment <|-- DesertTile
+Envoriment <|-- ForestTile
+Envoriment <|-- SnowTile
+Envoriment <|-- CityTile
+Envoriment <|-- TreasureTile
+
+class Envoriment
 {
-    
+    +Void SpawnMap()
+    +Void SpawnPlayer()
+    +Void SpawnEnemy()
+
+    +int TileCost
+    +string TileInfo
 }
 
-Player <|-- Movement
-Player <|-- Time
-Player <|-- Upgrades
+class GrassTile
+{
 
+}
+
+class WaterTile
+{
+
+}
+
+class MountainTile
+{
+
+}
+
+class DesertTile
+{
+
+}
+
+class ForestTile
+{
+
+}
+
+class SnowTile
+{
+
+}
+
+class CityTile
+{
+
+}
+
+class TreasureTile
+{
+
+}
+class Player
+{
+    +void OwnTiles()
+    +string CityInfo
+}
 
 Class Movement
 {
+    +void TakeTile()
+}
 
+Class EnemyMovement
+{
+    +Void TimeToTake()
+    +Void TakeTile()
 }
 
 class Upgrades
 {
-    +MilitaryPerk: string
-    +EconomicPerk: string
-    +HappinessPerk: string
-    
+    +string MilitaryPerk
+    +string EconomicPerk
+    +string HappinessPerk
+
     +void MIlitaryPerk()
     +Void EconomicPerk()
     +Void HappinessPerk()
@@ -29,26 +95,14 @@ class Upgrades
 
 class Enemy
 {
-
+    +void OwnTiles()
 }
 
 Class Time
 {
-    Cash generation
-    Population generation
-    Happiness generation
+    +Void Cash()
+    +Void Happiness()
+    +Void Military()
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 @enduml
