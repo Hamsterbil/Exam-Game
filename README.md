@@ -82,8 +82,8 @@ What we envision the game to end up like.
 ## Must
 > **Environment:** <br>
 > An entire world map created for the player to see <br>
-> Must have grass tiles. 
->
+> Must have at least grass tiles. 
+> 
 > 
 
 > **Player** <br>
@@ -91,9 +91,10 @@ What we envision the game to end up like.
 > Must be able to click on owned tiles to see future perks and upgrades
 
 > **Enemy** <br>
-> Must be able to 
+> Must be able to expand territory
 
 ## Should
+
 
 ## Could
 
