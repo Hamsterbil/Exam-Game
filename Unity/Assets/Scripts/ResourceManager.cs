@@ -7,16 +7,22 @@ public class ResourceManager : MonoBehaviour
     public int startingCash = 100;
     public int startingPopulation = 10;
 
+    public int maxMilitaryUnits = 1000; // Maximum military units based on population
+
     private int cash;
     private int population;
+    private int militaryUnits = 0;
+
 
     public event Action<int> OnCashChanged; // Event to notify when cash changes
     public event Action<int> OnPopulationChanged; // Event to notify when population changes
+    public event Action<int> OnMilitaryUnitsChanged; // Event to notify when military units change
 
     private void Start()
     {
         cash = startingCash;
         population = startingPopulation;
+        CalculateMilitaryUnits();
     }
 
     public int GetCash()
@@ -67,6 +73,18 @@ public class ResourceManager : MonoBehaviour
         {
             // Handle population-related errors, if necessary
             Debug.LogWarning("Insufficient population!");
+        }
+
+        public void CalculateMilitaryUnits()
+        {
+            // Calculate military units based on population
+            militaryUnits = Mathf.Min(GetPopulation() / 10, maxMilitaryUnits);
+            OnMilitaryUnitsChanged?.Invoke(militaryUnits);
+        }
+
+        public int GetMilitaryUnits()
+        {
+            return militaryUnits;
         }
     }
 
