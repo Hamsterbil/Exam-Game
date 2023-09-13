@@ -28,7 +28,7 @@ public class ResourceManager : MonoBehaviour
     {
         cash += amount;
         OnCashChanged?.Invoke(cash);
-        Player.cash += amount;
+        player.money += amount;
     }
 
     public void SubtractCash(int amount)

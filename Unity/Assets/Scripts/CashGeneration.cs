@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class CashGenerator : MonoBehaviour
+public class CashGeneration : ResourceManager 
 {
     private ResourceManager resourceManager;
     public int cashPerInterval = 100; // Adjust this based on your game's balance.
