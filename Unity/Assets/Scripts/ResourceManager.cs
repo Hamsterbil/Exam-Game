@@ -74,18 +74,18 @@ public class ResourceManager : MonoBehaviour
             // Handle population-related errors, if necessary
             Debug.LogWarning("Insufficient population!");
         }
+    }
 
-        public void CalculateMilitaryUnits()
-        {
-            // Calculate military units based on population
-            militaryUnits = Mathf.Min(GetPopulation() / 10, maxMilitaryUnits);
-            OnMilitaryUnitsChanged?.Invoke(militaryUnits);
-        }
+    public void CalculateMilitaryUnits()
+    {
+        // Calculate military units based on population
+        militaryUnits = Mathf.Min(GetPopulation() / 10, maxMilitaryUnits);
+        OnMilitaryUnitsChanged?.Invoke(militaryUnits);
+    }
 
-        public int GetMilitaryUnits()
-        {
-            return militaryUnits;
-        }
+    public int GetMilitaryUnits()
+    {
+        return militaryUnits;
     }
 
     // You can add more methods here as needed, such as getters for resource values.
