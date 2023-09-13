@@ -3,7 +3,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int money = 100; // Player's initial money
+    public int money; // Player's initial money
+    public int population; // Player's initial population
+    public int happiness; // Player's initial happiness
+    public int military; // Player's initial military
     public Color color; // Color for player-owned tiles
     public LayerMask hexCellLayerMask; // Layer mask for hex cells
 

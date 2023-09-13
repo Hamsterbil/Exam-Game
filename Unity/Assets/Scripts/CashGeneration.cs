@@ -1,26 +1,23 @@
 using UnityEngine;
 using System.Collections;
 
-public class CashGeneration : ResourceManager 
+public class CashGeneration : MonoBehaviour
 {
-    private ResourceManager resourceManager;
-    public int cashPerInterval = 100; // Adjust this based on your game's balance.
-    public float cashGenerationInterval = 2.0f; // Adjust the interval as needed.
+    public ResourceManager resourceManager;
+    public int cashPerInterval; // Adjust this based on your game's balance.
+    public float cashGenerationInterval; // Adjust the interval as needed.
 
-    private void Start()
+    void Start()
     {
-        resourceManager = GetComponent<ResourceManager>();
-        StartCoroutine(GenerateCash());
+        StartCoroutine(GenerateCash(cashGenerationInterval));
     }
 
-    private IEnumerator GenerateCash()
+    private IEnumerator GenerateCash(float waitTime)
     {
         while (true)
         {
-            yield return new WaitForSeconds(cashGenerationInterval);
+            yield return new WaitForSeconds(waitTime);
             resourceManager.AddCash(cashPerInterval);
         }
     }
 }
-
-// Path: Unity/Assets/Scripts/ResourceManager.cs

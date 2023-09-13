@@ -4,12 +4,15 @@ using System;
 public class ResourceManager : MonoBehaviour
 {
     public Player player;
-    public int startingCash = 100;
-    public int startingPopulation = 10;
+    public int startingCash;
+    public int startingPopulation;
 
+<<<<<<< HEAD
+=======
     public int maxMilitaryUnits = 1000; // Maximum military units based on population
 
     private int cash;
+>>>>>>> main
     private int population;
     private int militaryUnits = 0;
 
@@ -18,31 +21,34 @@ public class ResourceManager : MonoBehaviour
     public event Action<int> OnPopulationChanged; // Event to notify when population changes
     public event Action<int> OnMilitaryUnitsChanged; // Event to notify when military units change
 
-    private void Start()
+    void Start()
     {
-        cash = startingCash;
+        player.money = startingCash;
         population = startingPopulation;
         CalculateMilitaryUnits();
     }
 
+    void Update()
+    {
+     
+    }
+
     public int GetCash()
     {
-        return cash;
+        return player.money;
     }
 
     public void AddCash(int amount)
     {
-        cash += amount;
-        OnCashChanged?.Invoke(cash);
         player.money += amount;
     }
 
     public void SubtractCash(int amount)
     {
-        if (cash >= amount)
+        if (player.money >= amount)
         {
-            cash -= amount;
-            OnCashChanged?.Invoke(cash);
+            player.money -= amount;
+            OnCashChanged?.Invoke(player.money);
         }
         else
         {
