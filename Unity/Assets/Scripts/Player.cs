@@ -23,20 +23,23 @@ public class Player : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, hexCellLayerMask))
             {
                 HexCell hexCell = hit.collider.gameObject.GetComponent<HexCell>();
-                if (hexCell != null)
+                bool addCell = false;
+                foreach (HexCell ownedTile in ownedTiles)
                 {
-                    // Check if the hexCell is unowned or owned by another player
-                    if (hexCell.owner == null || hexCell.owner != this)
+                    foreach (HexCell neighbor in ownedTile.neighbors)
                     {
-                        if (hexCell.traversable) {
-                            // Set this player as the owner of the hexCell
-                            hexCell.SetOwner(this);
+                        if (hexCell != null && hexCell.traversable && hexCell == neighbor && hexCell.owner != this && hexCell.cost <= money)
+                        {
+                            money -= hexCell.cost;
+                            addCell = true;
                         }
                     }
+                }
+                if (addCell) {
+                    hexCell.SetOwner(this);
                 }
             }
         }
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
-        
     }
 }

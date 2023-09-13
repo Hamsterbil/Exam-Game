@@ -10,7 +10,7 @@ public class Grid : MonoBehaviour
     int N;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         N = settings.mapSizeFromCenter;
         for (int q = -N; q <= N; q++)
@@ -20,21 +20,25 @@ public class Grid : MonoBehaviour
             for (int r = r1; r <= r2; r++)
             {
                 // Randomly select a tile type
-                int tileType = Random.Range(0, tilePrefabs.Length); // Use the length of the tilePrefabs array
+                int tileType = Random.Range(0, tilePrefabs.Length);
 
                 // Create an instance of the selected prefab
-                HexCell cellPrefab = tilePrefabs[tileType];
-                HexCell cell = Instantiate(cellPrefab);
+                HexCell cell = Instantiate(tilePrefabs[tileType]);
 
                 // Set cell properties
-                cell.q = q;
-                cell.r = r;
+                cell.InitTile(cell, q, r);
                 cell.transform.position = new Vector3(q * 1.51f, 0, Mathf.Sqrt(3) * (r + q / 2.0f));
+
+                // Add the cell to the grid's cells list
                 cells.Add(cell);
             }
         }
 
-        // Random cell close to 0,0
+        foreach (HexCell cell in cells)
+        {
+            // Get neighbors and set them for the current cell
+            cell.GetNeighbors(cells);
+        }
         int randomCell = Random.Range(0, cells.Count);
         cells[randomCell].SetOwner(GameObject.Find("Player").GetComponent<Player>());
     }
@@ -48,10 +52,20 @@ public class Grid : MonoBehaviour
         {
             if (cell.typeName == "Water")
             {
-                cell.transform.localScale = new Vector3(
-                    1,
-                    Mathf.Sin(Time.time * settings.waveSpeed + cell.q * settings.waveAmount) * settings.waveHeight,
-                    1
+                // cell.transform.localScale = new Vector3(
+                //     1,
+                //     Mathf.Sin(Time.time * settings.waveSpeed + cell.q * settings.waveAmount) * settings.waveHeight + 1,
+                //     1
+                // );
+                cell.transform.position = new Vector3(
+                    cell.transform.position.x,
+                    Mathf.Clamp(
+                        Mathf.Sin(Time.time * settings.waveSpeed + cell.q * settings.waveAmount)
+                            * settings.waveHeight,
+                        -0.5f,
+                        0f
+                    ),
+                    cell.transform.position.z
                 );
             }
         }

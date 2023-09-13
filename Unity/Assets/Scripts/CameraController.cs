@@ -7,6 +7,11 @@ public class CameraController : MonoBehaviour
     private Vector3 dragStartPosition;
     private bool isDragging = false;
 
+    void Start() {
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        transform.position = new Vector3(player.ownedTiles[0].transform.position.x, 20, player.ownedTiles[0].transform.position.z);
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))

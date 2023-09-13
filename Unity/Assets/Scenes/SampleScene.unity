@@ -697,7 +697,6 @@ MonoBehaviour:
   tilePrefabs:
   - {fileID: -7536322218755516482, guid: 89f94302be4a46244aaf0a919f3b373d, type: 3}
   - {fileID: 1604922606449309724, guid: 13b73edb1d7f1944eba657ad9edd42ad, type: 3}
-  - {fileID: 383938362210592251, guid: fa0c5e374f25cbc42ae9b53f1d4abf5c, type: 3}
   - {fileID: 1454195421749708219, guid: f74299ad59ee082468a324393d21def4, type: 3}
   settings: {fileID: 11400000, guid: 8aa9d3ea61f09164c97209e5238b0a94, type: 2}
   cells: []
