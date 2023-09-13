@@ -7,12 +7,9 @@ public class ResourceManager : MonoBehaviour
     public int startingCash;
     public int startingPopulation;
 
-<<<<<<< HEAD
-=======
     public int maxMilitaryUnits = 1000; // Maximum military units based on population
 
     private int cash;
->>>>>>> main
     private int population;
     private int militaryUnits = 0;
 
@@ -24,7 +21,7 @@ public class ResourceManager : MonoBehaviour
     void Start()
     {
         player.money = startingCash;
-        population = startingPopulation;
+        player.population = startingPopulation;
         CalculateMilitaryUnits();
     }
 
@@ -48,7 +45,6 @@ public class ResourceManager : MonoBehaviour
         if (player.money >= amount)
         {
             player.money -= amount;
-            OnCashChanged?.Invoke(player.money);
         }
         else
         {
@@ -59,21 +55,19 @@ public class ResourceManager : MonoBehaviour
 
     public int GetPopulation()
     {
-        return population;
+        return player.population;
     }
 
     public void AddPopulation(int amount)
     {
-        population += amount;
-        OnPopulationChanged?.Invoke(population);
+        player.population += amount;
     }
 
     public void SubtractPopulation(int amount)
     {
-        if (population >= amount)
+        if (player.population >= amount)
         {
-            population -= amount;
-            OnPopulationChanged?.Invoke(population);
+            player.population -= amount;
         }
         else
         {
@@ -86,7 +80,6 @@ public class ResourceManager : MonoBehaviour
     {
         // Calculate military units based on population
         militaryUnits = Mathf.Min(GetPopulation() / 10, maxMilitaryUnits);
-        OnMilitaryUnitsChanged?.Invoke(militaryUnits);
     }
 
     public int GetMilitaryUnits()

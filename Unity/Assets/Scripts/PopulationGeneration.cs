@@ -4,7 +4,7 @@ using System.Collections;
 public class PopulationGeneration : MonoBehaviour
 {
 
-    private ResourceManager resourceManager;
+    public ResourceManager resourceManager;
 
     public int populationPerInterval; // Adjust this based on your game's balance.
 
@@ -12,7 +12,6 @@ public class PopulationGeneration : MonoBehaviour
 
     private void Start()
     {
-        resourceManager = GetComponent<ResourceManager>();
         StartCoroutine(GeneratePopulation());
     }
     

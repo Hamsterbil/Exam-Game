@@ -644,7 +644,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187f64071ef50504088cef65efae37d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 100
+  money: 0
+  population: 0
+  happiness: 0
+  military: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   hexCellLayerMask:
     serializedVersion: 2
@@ -874,6 +877,7 @@ GameObject:
   - component: {fileID: 1595157074}
   - component: {fileID: 1595157073}
   - component: {fileID: 1595157075}
+  - component: {fileID: 1595157076}
   m_Layer: 0
   m_Name: ResourceManager
   m_TagString: Untagged
@@ -893,6 +897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 718009226fe58524e9ccaa305a79e2c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resourceManager: {fileID: 1595157075}
   cashPerInterval: 100
   cashGenerationInterval: 1
 --- !u!4 &1595157074
@@ -925,6 +930,22 @@ MonoBehaviour:
   player: {fileID: 1034780179}
   startingCash: 1000
   startingPopulation: 100
+  maxMilitaryUnits: 1000
+--- !u!114 &1595157076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595157072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01b9af8bf06eaf47908b99aa6c5e933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceManager: {fileID: 1595157075}
+  populationPerInterval: 100
+  populationGenerationInterval: 1
 --- !u!1 &1919034866
 GameObject:
   m_ObjectHideFlags: 0

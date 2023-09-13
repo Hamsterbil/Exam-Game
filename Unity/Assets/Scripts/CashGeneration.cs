@@ -9,14 +9,14 @@ public class CashGeneration : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(GenerateCash(cashGenerationInterval));
+        StartCoroutine(GenerateCash());
     }
 
-    private IEnumerator GenerateCash(float waitTime)
+    private IEnumerator GenerateCash()
     {
         while (true)
         {
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(cashGenerationInterval);
             resourceManager.AddCash(cashPerInterval);
         }
     }
