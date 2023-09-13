@@ -4,39 +4,41 @@ using System;
 public class ResourceManager : MonoBehaviour
 {
     public Player player;
-    public int startingCash = 100;
-    public int startingPopulation = 10;
+    public int startingCash;
+    public int startingPopulation;
 
-    private int cash;
     private int population;
 
     public event Action<int> OnCashChanged; // Event to notify when cash changes
     public event Action<int> OnPopulationChanged; // Event to notify when population changes
 
-    private void Start()
+    void Start()
     {
-        cash = startingCash;
+        player.money = startingCash;
         population = startingPopulation;
+    }
+
+    void Update()
+    {
+     
     }
 
     public int GetCash()
     {
-        return cash;
+        return player.money;
     }
 
     public void AddCash(int amount)
     {
-        cash += amount;
-        OnCashChanged?.Invoke(cash);
         player.money += amount;
     }
 
     public void SubtractCash(int amount)
     {
-        if (cash >= amount)
+        if (player.money >= amount)
         {
-            cash -= amount;
-            OnCashChanged?.Invoke(cash);
+            player.money -= amount;
+            OnCashChanged?.Invoke(player.money);
         }
         else
         {

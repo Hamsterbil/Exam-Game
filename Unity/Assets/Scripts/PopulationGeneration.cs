@@ -6,9 +6,9 @@ public class PopulationGeneration : MonoBehaviour
 
     private ResourceManager resourceManager;
 
-    public int populationPerInterval = 100; // Adjust this based on your game's balance.
+    public int populationPerInterval; // Adjust this based on your game's balance.
 
-    public float populationGenerationInterval = 2.0f; // Adjust the interval as needed.
+    public float populationGenerationInterval; // Adjust the interval as needed.
 
     private void Start()
     {
