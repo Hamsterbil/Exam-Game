@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class City : HexCell
 {
-    public City() {
-        typeName = "City";
-        traversable = false;
-        cost = 10;
-    }
+    private string name = "City"; // Serialized field for the city name
+    private int tileCost = 10; // Serialized field for the city cost
+    private bool isTraversable = true; // Serialized field for traversable
 
-    
+    public City()
+    {
+        typeName = name; // Set typeName from the serialized field
+        cost = tileCost; // Set cost from the serialized field
+        traversable = isTraversable; // Set traversable from the serialized field
+    }
 }

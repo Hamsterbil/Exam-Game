@@ -5,56 +5,36 @@ public class HexCell : MonoBehaviour
 {
     public int q;
     public int r;
-
-    // Define common properties
     public string typeName;
     public Color color;
     public int cost;
     public bool traversable;
     public List<HexCell> neighbors;
     public GridPlayer owner;
-    public Player player;
 
     private Color originalColor;
     private Vector3 originalScale;
 
-    // Method to initialize the cell as a specific tile type
-
-    public void InitTile(HexCell tileType, int Q, int R)
+    public void InitTile(int Q, int R)
     {
         q = Q;
         r = R;
-        color = tileType.color;
-        // cost = tileType.cost;
-        traversable = tileType.traversable;
-        typeName = tileType.typeName;
         name = typeName + " (" + q + "," + r + ")";
     }
 
     void Start()
     {
-        // ... code to initialize the cell ...
         if (q == 0 && r == 0 && owner == null)
         {
             name = "Center ----------------------------";
             color = Color.white;
         }
-        GetNeighbors(GameObject.Find("HexGrid").GetComponent<Grid>().cells);
+        GetNeighbors(GameObject.Find("HexGrid").GetComponent<HexGrid>().cells);
     }
 
     protected virtual void Update()
     {
         GetComponentInChildren<MeshRenderer>().material.color = color;
-        if (owner != null && typeName == "Player City")
-        {
-            foreach (HexCell neighbor in neighbors)
-            {
-                if (neighbor != null && neighbor.traversable && neighbor.owner == null)
-                {
-                    neighbor.color = Color.red;
-                }
-            }
-        }
     }
 
     void OnMouseEnter()
@@ -88,14 +68,12 @@ public class HexCell : MonoBehaviour
         }
     }
 
-    public void SetOwner(GridPlayer player)
+    public void SetOwner(GridPlayer player, HexCell previousCell)
     {
         owner = player; // Set the owner of the tile
-        owner.money -= cost; // Subtract the cost of the tile from the player's money if not enemy
-        typeName = player.playerTypeName + typeName;
-        name = typeName + " (" + q + "," + r + ")";
-        player.ownedTiles.Add(this); // Add the tile to the player's list of owned tiles
+        name = player.playerTypeName + previousCell.typeName + " (" + q + "," + r + ")";
 
+        player.ownedTiles.Add(this); // Add the tile to the player's list of owned tiles
         transform.position += new Vector3(0, 0.5f, 0);
     }
 

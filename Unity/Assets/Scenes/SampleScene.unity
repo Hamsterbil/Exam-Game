@@ -932,7 +932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dfb62bad56768f44a1f261ffc64871a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 3
 --- !u!1 &1034780178
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,10 +965,10 @@ MonoBehaviour:
   money: 0
   population: 0
   happiness: 0
-  military: 0
+  military: 100
   grid: {fileID: 0}
-  ownedTilePrefab: {fileID: -2091771540329049422, guid: d3cc416336441ec4ead7f2eae6ade48a, type: 3}
   settings: {fileID: 0}
+  ownedTilePrefab: {fileID: -2091771540329049422, guid: d3cc416336441ec4ead7f2eae6ade48a, type: 3}
   ownedTiles: []
   playerCamera: {fileID: 963194229}
   hexCellLayerMask:
@@ -1096,11 +1096,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6bb91b71d0a6243931b509c1795bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 8aa9d3ea61f09164c97209e5238b0a94, type: 2}
   tilePrefabs:
   - {fileID: 1604922606449309724, guid: 13b73edb1d7f1944eba657ad9edd42ad, type: 3}
   - {fileID: -7536322218755516482, guid: 89f94302be4a46244aaf0a919f3b373d, type: 3}
   - {fileID: 1454195421749708219, guid: f74299ad59ee082468a324393d21def4, type: 3}
-  settings: {fileID: 11400000, guid: 8aa9d3ea61f09164c97209e5238b0a94, type: 2}
   cells: []
 --- !u!4 &1117048374
 Transform:

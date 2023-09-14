@@ -47,5 +47,7 @@ public class CameraController : MonoBehaviour
         // Zoom in and out with the mouse wheel
         float scroll = Mathf.Clamp(transform.position.y - Input.GetAxis("Mouse ScrollWheel") * 8 * 100f * Time.deltaTime, 10f, 60f);
         transform.position = new Vector3(transform.position.x, scroll, transform.position.z);
+
+        // Move the camera with the WASD keys
     }
 }

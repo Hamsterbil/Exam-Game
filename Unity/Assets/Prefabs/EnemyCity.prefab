@@ -63,12 +63,11 @@ MonoBehaviour:
   q: 0
   r: 0
   typeName: City
-  color: {r: 1, g: 0, b: 0, a: 1}
+  color: {r: 0.9069853, g: 0, b: 1, a: 1}
   cost: 10
-  traversable: 0
+  traversable: 1
   neighbors: []
   owner: {fileID: 0}
-  player: {fileID: 0}
 --- !u!1 &3752049171430196351
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,11 +222,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15f1174a35d1c9d4fadb2b96aed53d26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15f1174a35d1c9d4fadb2b96aed53d26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 15f1174a35d1c9d4fadb2b96aed53d26, type: 3}
       propertyPath: m_Name

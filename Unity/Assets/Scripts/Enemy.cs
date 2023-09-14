@@ -3,8 +3,7 @@ using System.Collections;
 
 public class Enemy : GridPlayer
 {
-    public override string playerTypeName => "Enemy";
-    public Settings settings;
+    public override string playerTypeName => "Enemy ";
 
     public override void StartPlayer()
     {

@@ -26,5 +26,20 @@ public class Player : GridPlayer
             }
         }
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
+
+        HighlightNeighbors();
+    }
+
+    public void HighlightNeighbors() {
+        foreach (HexCell ownedTile in ownedTiles)
+        {
+            foreach (HexCell neighbor in ownedTile.neighbors)
+            {
+                if (neighbor != null && neighbor.traversable && neighbor.owner == null)
+                {
+                    neighbor.color = Color.red;
+                }
+            }
+        }
     }
 }
