@@ -9,6 +9,7 @@ public class CashGeneration : MonoBehaviour
 
     void Start()
     {
+        resourceManager = GetComponent<ResourceManager>();
         StartCoroutine(GenerateCash());
     }
 
@@ -16,6 +17,8 @@ public class CashGeneration : MonoBehaviour
     {
         while (true)
         {
+            float cashMultiplier = 1.0f - (resourceManager.Happiness / 100.0f);
+            int cashToGenerate = Mathf.RoundToInt(cashPerInterval * cashMultiplier);
             yield return new WaitForSeconds(cashGenerationInterval);
             resourceManager.AddCash(cashPerInterval);
         }

@@ -6,7 +6,8 @@ public class ResourceManager : MonoBehaviour
     public Player player;
     public int startingCash;
     public int startingPopulation;
-
+    public int Happiness {get: private set;}
+    public int MaxHappiness = 100; // Maximum happiness
     public int maxMilitaryUnits = 1000; // Maximum military units based on population
 
     private int cash;
@@ -17,12 +18,14 @@ public class ResourceManager : MonoBehaviour
     public event Action<int> OnCashChanged; // Event to notify when cash changes
     public event Action<int> OnPopulationChanged; // Event to notify when population changes
     public event Action<int> OnMilitaryUnitsChanged; // Event to notify when military units change
-
+    public event Action<int> OnHappinessChanged; // Event to notify when happiness changes
     void Start()
     {
         player.money = startingCash;
         player.population = startingPopulation;
         CalculateMilitaryUnits();
+        Happiness = Maxhappiness; // Start with max happiness
+
     }
 
     void Update()
@@ -87,5 +90,9 @@ public class ResourceManager : MonoBehaviour
         return militaryUnits;
     }
 
-    // You can add more methods here as needed, such as getters for resource values.
+    public void ModifyHappiness(int amount)
+    {
+        Happiness += amount;
+        Happiness = Mathf.Clamp(Happiness, 0, MaxHappiness);
+    }
 }
