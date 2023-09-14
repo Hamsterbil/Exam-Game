@@ -24,5 +24,3 @@ public class PopulationGeneration : MonoBehaviour
         }
     }
 }
-
-// Path: Unity/Assets/Scripts/ResourceManager.cs

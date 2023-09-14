@@ -294,7 +294,7 @@ RectTransform:
   m_Children:
   - {fileID: 346260419}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -648,11 +648,13 @@ MonoBehaviour:
   population: 0
   happiness: 0
   military: 0
+  ownedTilePrefab: {fileID: -2091771540329049422, guid: d3cc416336441ec4ead7f2eae6ade48a, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
+  ownedTiles: []
+  playerCamera: {fileID: 963194229}
   hexCellLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  ownedTiles: []
 --- !u!4 &1034780180
 Transform:
   m_ObjectHideFlags: 0
@@ -666,7 +668,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1117048372
 GameObject:
@@ -716,7 +718,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1153830173
 GameObject:

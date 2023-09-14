@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 209748812e27d8b459f8491db3a7b833
+guid: 8080fd05bd794024b87ba49b2a29ff4d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - ownedTilePrefab: {fileID: 8129890943631657260, guid: 19582e8c47a6f8842abd7c345c7f7674, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

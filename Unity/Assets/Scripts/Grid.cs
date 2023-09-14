@@ -9,9 +9,10 @@ public class Grid : MonoBehaviour
     public List<HexCell> cells = new List<HexCell>();
     int N;
 
-    // Start is called before the first frame update
     void Awake()
     {
+        GameObject EnemyPlayer = new GameObject("Enemy");
+        Enemy enemy = EnemyPlayer.AddComponent<Enemy>();
         N = settings.mapSizeFromCenter;
         for (int q = -N; q <= N; q++)
         {
@@ -33,30 +34,16 @@ public class Grid : MonoBehaviour
                 cells.Add(cell);
             }
         }
-
-        foreach (HexCell cell in cells)
-        {
-            // Get neighbors and set them for the current cell
-            cell.GetNeighbors(cells);
-        }
-        int randomCell = Random.Range(0, cells.Count);
-        cells[randomCell].SetOwner(GameObject.Find("Player").GetComponent<Player>());
     }
 
     // Update is called once per frame
     void Update()
     {
-        // ... code to update the grid ...
         //Update water tiles to move with sine wave
         foreach (HexCell cell in cells)
         {
             if (cell.typeName == "Water")
             {
-                // cell.transform.localScale = new Vector3(
-                //     1,
-                //     Mathf.Sin(Time.time * settings.waveSpeed + cell.q * settings.waveAmount) * settings.waveHeight + 1,
-                //     1
-                // );
                 cell.transform.position = new Vector3(
                     cell.transform.position.x,
                     Mathf.Clamp(
