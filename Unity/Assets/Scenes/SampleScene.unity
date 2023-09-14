@@ -648,7 +648,10 @@ MonoBehaviour:
   population: 0
   happiness: 0
   military: 0
+<<<<<<< Updated upstream
   ownedTilePrefab: {fileID: -2091771540329049422, guid: d3cc416336441ec4ead7f2eae6ade48a, type: 3}
+=======
+>>>>>>> Stashed changes
   color: {r: 0, g: 0, b: 0, a: 0}
   ownedTiles: []
   playerCamera: {fileID: 963194229}
@@ -771,7 +774,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: text
+  m_Text: Money
 --- !u!222 &1153830175
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -877,9 +880,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1595157074}
-  - component: {fileID: 1595157073}
   - component: {fileID: 1595157075}
+<<<<<<< Updated upstream
   - component: {fileID: 1595157076}
+=======
+  - component: {fileID: 1595157077}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: ResourceManager
   m_TagString: Untagged
@@ -887,6 +893,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< Updated upstream
 --- !u!114 &1595157073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -902,6 +909,8 @@ MonoBehaviour:
   resourceManager: {fileID: 1595157075}
   cashPerInterval: 100
   cashGenerationInterval: 1
+=======
+>>>>>>> Stashed changes
 --- !u!4 &1595157074
 Transform:
   m_ObjectHideFlags: 0
@@ -930,10 +939,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1034780179}
-  startingCash: 1000
+  startingCash: 100
   startingPopulation: 100
   maxMilitaryUnits: 1000
+<<<<<<< Updated upstream
 --- !u!114 &1595157076
+=======
+--- !u!114 &1595157077
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -942,12 +955,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1595157072}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< Updated upstream
   m_Script: {fileID: 11500000, guid: e01b9af8bf06eaf47908b99aa6c5e933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   resourceManager: {fileID: 1595157075}
   populationPerInterval: 100
   populationGenerationInterval: 1
+=======
+  m_Script: {fileID: 11500000, guid: 718009226fe58524e9ccaa305a79e2c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceManager: {fileID: 1595157075}
+  cashPerInterval: 100
+  cashGenerationInterval: 1
+>>>>>>> Stashed changes
 --- !u!1 &1919034866
 GameObject:
   m_ObjectHideFlags: 0

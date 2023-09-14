@@ -8,8 +8,12 @@ public class ResourceManager : MonoBehaviour
     public int startingPopulation;
 
     public int maxMilitaryUnits = 1000; // Maximum military units based on population
+<<<<<<< Updated upstream
 
     private int cash;
+=======
+    
+>>>>>>> Stashed changes
     private int population;
     private int militaryUnits = 0;
 
