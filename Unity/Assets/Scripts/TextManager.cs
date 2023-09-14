@@ -8,6 +8,12 @@ public class TextManager : MonoBehaviour
 
     public Text moneyText;
 
+    public Text populationText;
+
+    public Text happinessText;
+
+    public Text militaryText;
+
     public Player player;
 
 
@@ -20,6 +26,9 @@ public class TextManager : MonoBehaviour
     void Update()
     {
         moneyText.text = "" + player.money;
+        populationText.text = "" + player.population;
+        happinessText.text = "" + player.happiness;
+        militaryText.text = "" + player.military;
             
     }
 }
