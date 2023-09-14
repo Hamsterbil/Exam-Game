@@ -21,7 +21,14 @@ public class Grid : MonoBehaviour
             for (int r = r1; r <= r2; r++)
             {
                 // Randomly select a tile type
-                int tileType = Random.Range(0, tilePrefabs.Length);
+                int tileType;
+
+                if (Random.Range(0, 5) == 0)
+                {
+                    tileType = 0;
+                } else {
+                    tileType = Random.Range(1, tilePrefabs.Length);
+                }
 
                 // Create an instance of the selected prefab
                 HexCell cell = Instantiate(tilePrefabs[tileType]);

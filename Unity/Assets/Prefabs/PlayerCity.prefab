@@ -146,11 +146,12 @@ MonoBehaviour:
   q: 0
   r: 0
   typeName: City
-  color: {r: 1, g: 0, b: 0, a: 1}
-  cost: 0
+  color: {r: 0, g: 0, b: 0, a: 1}
+  cost: 10
   traversable: 0
   neighbors: []
   owner: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1001 &3840190859054699136
 PrefabInstance:
   m_ObjectHideFlags: 0

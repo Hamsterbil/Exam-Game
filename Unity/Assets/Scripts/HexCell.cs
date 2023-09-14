@@ -13,6 +13,7 @@ public class HexCell : MonoBehaviour
     public bool traversable;
     public List<HexCell> neighbors;
     public GridPlayer owner;
+    public Player player;
 
     private Color originalColor;
     private Vector3 originalScale;
@@ -24,7 +25,7 @@ public class HexCell : MonoBehaviour
         q = Q;
         r = R;
         color = tileType.color;
-        cost = tileType.cost;
+        // cost = tileType.cost;
         traversable = tileType.traversable;
         typeName = tileType.typeName;
         name = typeName + " (" + q + "," + r + ")";
@@ -33,7 +34,7 @@ public class HexCell : MonoBehaviour
     void Start()
     {
         // ... code to initialize the cell ...
-        if (q == 0 && r == 0)
+        if (q == 0 && r == 0 && owner == null)
         {
             name = "Center ----------------------------";
             color = Color.white;
@@ -44,7 +45,7 @@ public class HexCell : MonoBehaviour
     protected virtual void Update()
     {
         GetComponentInChildren<MeshRenderer>().material.color = color;
-        if (owner != null)
+        if (owner != null && typeName == "Player City")
         {
             foreach (HexCell neighbor in neighbors)
             {
@@ -89,15 +90,13 @@ public class HexCell : MonoBehaviour
 
     public void SetOwner(GridPlayer player)
     {
-            owner = player; // Set the owner of the tile
-            owner.money -= cost; // Subtract the cost of the tile from the player's money
-            typeName = player.playerTypeName + typeName;
-            name = typeName + " (" + q + "," + r + ")";
-            player.ownedTiles.Add(this); // Add the tile to the player's list of owned tiles
+        owner = player; // Set the owner of the tile
+        owner.money -= cost; // Subtract the cost of the tile from the player's money if not enemy
+        typeName = player.playerTypeName + typeName;
+        name = typeName + " (" + q + "," + r + ")";
+        player.ownedTiles.Add(this); // Add the tile to the player's list of owned tiles
 
-            color = owner.color;
-            originalColor = color;
-            transform.position += new Vector3(0, 0.5f, 0);
+        transform.position += new Vector3(0, 0.5f, 0);
     }
 
     public List<HexCell> GetNeighbors(List<HexCell> allCells)

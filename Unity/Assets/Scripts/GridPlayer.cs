@@ -9,7 +9,7 @@ public abstract class GridPlayer : MonoBehaviour
     public int military;
     public Grid grid;
     public HexCell ownedTilePrefab;
-    public Color color;
+    public Settings settings;
     public List<HexCell> ownedTiles = new List<HexCell>();
     public abstract string playerTypeName { get; }
 
@@ -19,7 +19,9 @@ public abstract class GridPlayer : MonoBehaviour
         if (grid.cells.Count > 0)
         {
             int randomCell = Random.Range(0, grid.cells.Count);
-            while (grid.cells[randomCell].owner != null && grid.cells[randomCell].traversable == false)
+            while (
+                grid.cells[randomCell].owner != null && grid.cells[randomCell].traversable == false
+            )
             {
                 randomCell = Random.Range(0, grid.cells.Count);
             }
@@ -27,6 +29,7 @@ public abstract class GridPlayer : MonoBehaviour
         }
         StartPlayer();
     }
+
     protected virtual void Update()
     {
         // Implement common player logic here
@@ -50,7 +53,13 @@ public abstract class GridPlayer : MonoBehaviour
         {
             foreach (HexCell neighbor in ownedTile.neighbors)
             {
-                if (hexCell != null && hexCell.traversable && hexCell == neighbor && hexCell.owner != this && hexCell.cost <= money)
+                if (
+                    hexCell != null
+                    && hexCell.traversable
+                    && hexCell == neighbor
+                    && hexCell.owner != this
+                    && hexCell.cost <= money
+                )
                 {
                     return true;
                 }
@@ -61,20 +70,25 @@ public abstract class GridPlayer : MonoBehaviour
 
     protected void AddCell(HexCell hexCell)
     {
-            Debug.Log(playerTypeName + "----------------- is taking a tile");
-            HexCell playerCell = Instantiate(ownedTilePrefab);
-            playerCell.InitTile(hexCell, hexCell.q, hexCell.r);
-            playerCell.transform.position = new Vector3(hexCell.q * 1.51f, 0, Mathf.Sqrt(3) * (hexCell.r + hexCell.q / 2.0f));
+        HexCell playerCell = Instantiate(ownedTilePrefab);
 
-            grid.cells[grid.cells.IndexOf(hexCell)] = playerCell;
-            if (ownedTiles.Contains(hexCell))
-            {
-                ownedTiles[ownedTiles.IndexOf(hexCell)] = playerCell;
-            }
-            
+        playerCell.InitTile(playerCell, hexCell.q, hexCell.r);
+        playerCell.transform.position = new Vector3(
+            hexCell.q * 1.51f,
+            0,
+            Mathf.Sqrt(3) * (hexCell.r + hexCell.q / 2.0f)
+        );
 
-            playerCell.SetOwner(this);
-            
-            Destroy(hexCell.gameObject);
+        //Replace the cell in the grid's cells list, player owned cell list and cell neighbor list with the new owned cell
+        grid.cells[grid.cells.IndexOf(hexCell)] = playerCell;
+
+        foreach (HexCell neighbor in hexCell.neighbors)
+        {
+            neighbor.neighbors[neighbor.neighbors.IndexOf(hexCell)] = playerCell;
+        }
+
+        playerCell.SetOwner(this);
+
+        Destroy(hexCell.gameObject);
     }
 }

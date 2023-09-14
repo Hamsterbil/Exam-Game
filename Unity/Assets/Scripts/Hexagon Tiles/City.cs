@@ -7,7 +7,8 @@ public class City : HexCell
     public City() {
         typeName = "City";
         traversable = false;
-        color = Color.red;
-        cost = 0;
+        cost = 10;
     }
+
+    
 }
