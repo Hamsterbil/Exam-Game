@@ -6,15 +6,42 @@ public class HexGrid : MonoBehaviour
     [HideInInspector]
     public Settings settings;
 
-    public HexCell[] tilePrefabs;
-    public List<HexCell> cells = new List<HexCell>();
+    public HexTile[] tilePrefabs;
+    public List<HexTile> tiles;
 
     void Awake()
     {
-        GameObject EnemyPlayer = new GameObject("Enemy");
-        Enemy enemy = EnemyPlayer.AddComponent<Enemy>();
-        int N = settings.mapSizeFromCenter;
+        tiles = new List<HexTile>();
 
+        int N = settings.mapSizeFromCenter;
+        CreateGrid(N);
+
+        AddEnemies(4);
+    }
+
+    void Update()
+    {
+        foreach (HexTile tile in tiles)
+        {
+            if (tile.typeName == "Water")
+            {
+                float yOffset = Mathf.Clamp(
+                    Mathf.Sin(Time.time * settings.waveSpeed + tile.q * settings.waveAmount)
+                        * settings.waveHeight,
+                    -0.5f,
+                    0f
+                );
+                tile.transform.position = new Vector3(
+                    tile.transform.position.x,
+                    yOffset,
+                    tile.transform.position.z
+                );
+            }
+        }
+    }
+
+    private void CreateGrid(int N)
+    {
         for (int q = -N; q <= N; q++)
         {
             int r1 = Mathf.Max(-N, -q - N);
@@ -23,26 +50,24 @@ public class HexGrid : MonoBehaviour
             for (int r = r1; r <= r2; r++)
             {
                 int tileType = Random.Range(0, tilePrefabs.Length);
-                HexCell cell = Instantiate(tilePrefabs[tileType]);
+                HexTile tile = Instantiate(tilePrefabs[tileType]);
 
-                cell.InitTile(q, r);
-                cell.transform.position = new Vector3(q * 1.51f, 0, Mathf.Sqrt(3) * (r + q / 2.0f));
+                tile.InitTile(q, r);
+                tile.transform.position = new Vector3(q * 1.51f, 0, Mathf.Sqrt(3) * (r + q / 2.0f));
 
-                cell.transform.SetParent(transform);
-                cells.Add(cell);
+                tile.transform.SetParent(transform);
+                tiles.Add(tile);
             }
         }
     }
 
-    void Update()
+    private void AddEnemies(int amount)
     {
-        foreach (HexCell cell in cells)
+        for (int i = 0; i < amount; i++)
         {
-            if (cell.typeName == "Water")
-            {
-                float yOffset = Mathf.Clamp(Mathf.Sin(Time.time * settings.waveSpeed + cell.q * settings.waveAmount) * settings.waveHeight, -0.5f, 0f);
-                cell.transform.position = new Vector3(cell.transform.position.x, yOffset, cell.transform.position.z);
-            }
+            GameObject EnemyPlayer = new GameObject("Enemy " + i);
+            Enemy enemy = EnemyPlayer.AddComponent<Enemy>();
+            enemy.color = new Color(Random.value, Random.value, Random.value); // Generates random RGB color
         }
     }
 }

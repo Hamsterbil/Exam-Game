@@ -451,7 +451,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: text
+  m_Text: Money
 --- !u!222 &692932926
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -709,7 +709,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: text
+  m_Text: Population
 --- !u!1 &852323097
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,8 +741,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyText: {fileID: 692932925}
   populationText: {fileID: 805687439}
-  happinessText: {fileID: 1153830174}
   militaryText: {fileID: 1517806389}
+  happinessText: {fileID: 1153830174}
   player: {fileID: 1034780179}
 --- !u!4 &852323100
 Transform:
@@ -944,7 +944,7 @@ GameObject:
   - component: {fileID: 1034780180}
   - component: {fileID: 1034780179}
   m_Layer: 0
-  m_Name: Player
+  m_Name: 'Player '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -962,18 +962,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187f64071ef50504088cef65efae37d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
+  ownedTilePrefab: {fileID: -2091771540329049422, guid: d3cc416336441ec4ead7f2eae6ade48a, type: 3}
+  grid: {fileID: 0}
+  ownedTiles: []
+  settings: {fileID: 0}
   money: 0
   population: 0
-  happiness: 0
   military: 100
-  grid: {fileID: 0}
-  settings: {fileID: 0}
-  ownedTilePrefab: {fileID: -2091771540329049422, guid: d3cc416336441ec4ead7f2eae6ade48a, type: 3}
-  ownedTiles: []
+  happiness: 0
   playerCamera: {fileID: 963194229}
-  hexCellLayerMask:
+  hexTileLayerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
 --- !u!4 &1034780180
 Transform:
   m_ObjectHideFlags: 0
@@ -1098,10 +1099,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 8aa9d3ea61f09164c97209e5238b0a94, type: 2}
   tilePrefabs:
-  - {fileID: 1604922606449309724, guid: 13b73edb1d7f1944eba657ad9edd42ad, type: 3}
   - {fileID: -7536322218755516482, guid: 89f94302be4a46244aaf0a919f3b373d, type: 3}
   - {fileID: 1454195421749708219, guid: f74299ad59ee082468a324393d21def4, type: 3}
-  cells: []
+  tiles: []
 --- !u!4 &1117048374
 Transform:
   m_ObjectHideFlags: 0
@@ -1168,7 +1168,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: text
+  m_Text: Happiness
 --- !u!222 &1153830175
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1394,7 +1394,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: text
+  m_Text: Military
 --- !u!222 &1517806390
 CanvasRenderer:
   m_ObjectHideFlags: 0

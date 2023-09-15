@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: -2091771540329049422}
   m_Layer: 3
   m_Name: PlayerCity
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,11 +145,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   q: 0
   r: 0
-  typeName: City
-  color: {r: 0, g: 0, b: 0, a: 1}
   cost: 10
-  isCity: 1
+  typeName: City
   traversable: 1
+  color: {r: 0.24871886, g: 1, b: 0, a: 1}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
   neighbors: []
   owner: {fileID: 0}
 --- !u!1001 &3840190859054699136

@@ -12,5 +12,4 @@ public class Settings : ScriptableObject
     public float waveHeight;
     [Range(0, 5)]
     public float waveSpeed;
-    public float enemyTurnTime;
 }

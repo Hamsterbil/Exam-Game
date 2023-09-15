@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -9096915944969514947}
   m_Layer: 3
   m_Name: Mountain
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,13 +48,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   q: 0
   r: 0
-  typeName: Mountain
-  color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   cost: 0
+  typeName: Mountain
   traversable: 0
+  color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
   neighbors: []
   owner: {fileID: 0}
-  player: {fileID: 0}
 --- !u!65 &-9096915944969514947
 BoxCollider:
   m_ObjectHideFlags: 0

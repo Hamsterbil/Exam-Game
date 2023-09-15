@@ -3,11 +3,11 @@ using System.Collections;
 
 public class Enemy : GridPlayer
 {
-    public override string playerTypeName => "Enemy ";
+    public override string playerTypeName => gameObject.name;
+    public float enemyTurnTime;
 
     public override void StartPlayer()
     {
-        money = 10000;
         StartCoroutine(EnemyTurn());
     }
 
@@ -20,24 +20,37 @@ public class Enemy : GridPlayer
     {
         while (true)
         {
-            yield return new WaitForSeconds(settings.enemyTurnTime);
-            addCellToEnemy();
+            yield return new WaitForSeconds(enemyTurnTime);
+            TakeTile();
         }
     }
 
-    void addCellToEnemy()
+    void TakeTile()
     {
-        HexCell randomCell = null;
-        HexCell randomNeighbor = null;
+        HexTile randomTile = null;
+        HexTile randomNeighbor = null;
         int attempts = 50;
+
         for (int i = 0; i < attempts; i++)
         {
-            int randomOwnedCell = Random.Range(0, ownedTiles.Count);
-            randomCell = ownedTiles[randomOwnedCell];
-            int randomNeighborCell = Random.Range(0, randomCell.neighbors.Count);
-            randomNeighbor = randomCell.neighbors[randomNeighborCell];
+            if (ownedTiles.Count == 0)
+            {
+                break;
+            }
 
-            if (CanAddCell(randomNeighbor))
+            int randomOwnedTile = Random.Range(0, ownedTiles.Count);
+            randomTile = ownedTiles[randomOwnedTile];
+
+            // Check if the randomTile has valid neighbors
+            if (randomTile.neighbors.Count == 0)
+            {
+                continue;
+            }
+
+            int randomNeighborTile = Random.Range(0, randomTile.neighbors.Count);
+            randomNeighbor = randomTile.neighbors[randomNeighborTile];
+
+            if (CanAddTile(randomNeighbor) && randomNeighbor.owner != this)
             {
                 break;
             }
@@ -47,6 +60,10 @@ public class Enemy : GridPlayer
             }
         }
 
-        CheckAndAddCell(randomNeighbor);
+        // Check if a valid randomNeighbor was found before attempting to add it
+        if (randomNeighbor != null)
+        {
+            CheckAndAddTile(randomNeighbor);
+        }
     }
 }

@@ -16,4 +16,3 @@ MonoBehaviour:
   waveAmount: 1
   waveHeight: 0.5
   waveSpeed: 0.5
-  enemyTurnTime: 1
