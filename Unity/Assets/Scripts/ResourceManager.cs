@@ -9,15 +9,10 @@ public class ResourceManager : MonoBehaviour
     public int Happiness {get; private set;}
     public int MaxHappiness = 100; // Maximum happiness
     public int maxMilitaryUnits = 1000; // Maximum military units based on population
-<<<<<<< Updated upstream
 
     private int cash;
-=======
-    
->>>>>>> Stashed changes
     private int population;
     private int militaryUnits = 0;
-
 
     public event Action<int> OnCashChanged; // Event to notify when cash changes
     public event Action<int> OnPopulationChanged; // Event to notify when population changes
