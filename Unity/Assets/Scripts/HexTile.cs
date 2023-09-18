@@ -1,69 +1,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HexCell : MonoBehaviour
+public class HexTile : MonoBehaviour
 {
     public int q;
     public int r;
-
-    // Define common properties
-    public string typeName;
-    public Color color;
     public int cost;
+    public string typeName;
     public bool traversable;
-    public List<HexCell> neighbors;
+    public Color color;
+    public Color originalColor;
+    private Vector3 originalScale;
+    public List<HexTile> neighbors;
     public GridPlayer owner;
 
-    private Color originalColor;
-    private Vector3 originalScale;
-
-    // Method to initialize the cell as a specific tile type
-
-    public void InitTile(HexCell tileType, int Q, int R)
+    public void InitTile(int Q, int R)
     {
         q = Q;
         r = R;
-        color = tileType.color;
-        cost = tileType.cost;
-        traversable = tileType.traversable;
-        typeName = tileType.typeName;
         name = typeName + " (" + q + "," + r + ")";
     }
 
     void Start()
     {
-        // ... code to initialize the cell ...
-        if (q == 0 && r == 0)
+        if (q == 0 && r == 0 && owner == null)
         {
             name = "Center ----------------------------";
             color = Color.white;
         }
-        GetNeighbors(GameObject.Find("HexGrid").GetComponent<Grid>().cells);
+        originalColor = color;
+        originalScale = transform.localScale;
+        GetNeighbors(GameObject.Find("HexGrid").GetComponent<HexGrid>().tiles);
     }
 
     protected virtual void Update()
     {
         GetComponentInChildren<MeshRenderer>().material.color = color;
-        if (owner != null)
-        {
-            foreach (HexCell neighbor in neighbors)
-            {
-                if (neighbor != null && neighbor.traversable && neighbor.owner == null)
-                {
-                    neighbor.color = Color.red;
-                }
-            }
-        }
+    }
+
+    public void SetOwner(GridPlayer player, HexTile previousTile)
+    {
+        owner = player;
+        name = player.playerTypeName + previousTile.typeName + " (" + q + "," + r + ")";
+        player.ownedTiles.Add(this);
+        transform.position += new Vector3(0, 0.5f, 0);
     }
 
     void OnMouseEnter()
     {
-        Debug.Log(typeName);
         if (traversable)
         {
-            originalColor = color;
             originalScale = transform.localScale;
-
             color = Color.Lerp(color, Color.black, 0.2f);
             transform.localScale = new Vector3(1, originalScale.y * 1.1f, 1);
         }
@@ -87,24 +74,15 @@ public class HexCell : MonoBehaviour
         }
     }
 
-    public void SetOwner(GridPlayer player)
+    public bool EligibleForPurchase(GridPlayer player, HexTile neighbor)
     {
-            owner = player; // Set the owner of the tile
-            owner.money -= cost; // Subtract the cost of the tile from the player's money
-            typeName = player.playerTypeName + typeName;
-            name = typeName + " (" + q + "," + r + ")";
-            player.ownedTiles.Add(this); // Add the tile to the player's list of owned tiles
-
-            color = owner.color;
-            originalColor = color;
-            transform.position += new Vector3(0, 0.5f, 0);
+        return this != null && traversable && this == neighbor && owner != player;
     }
 
-    public List<HexCell> GetNeighbors(List<HexCell> allCells)
+    private List<HexTile> GetNeighbors(List<HexTile> allTiles)
     {
-        neighbors = new List<HexCell>();
+        neighbors = new List<HexTile>();
 
-        // Define the six directions for neighbors
         int[] neighborDirections = { 0, 1, 2, 3, 4, 5 };
 
         foreach (int direction in neighborDirections)
@@ -112,7 +90,6 @@ public class HexCell : MonoBehaviour
             int neighborQ = q;
             int neighborR = r;
 
-            // Adjust neighborQ and neighborR based on the direction
             switch (direction)
             {
                 case 0:
@@ -137,13 +114,12 @@ public class HexCell : MonoBehaviour
                     break;
             }
 
-            // Search for the neighbor in the list of all cells
-            foreach (HexCell cell in allCells)
+            foreach (HexTile tile in allTiles)
             {
-                if (cell.q == neighborQ && cell.r == neighborR)
+                if (tile.q == neighborQ && tile.r == neighborR)
                 {
-                    neighbors.Add(cell);
-                    break; // Found the neighbor, no need to continue searching
+                    neighbors.Add(tile);
+                    break;
                 }
             }
         }

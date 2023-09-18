@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: -2091771540329049422}
   m_Layer: 3
   m_Name: PlayerCity
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,10 +145,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   q: 0
   r: 0
+  cost: 10
   typeName: City
-  color: {r: 1, g: 0, b: 0, a: 1}
-  cost: 0
-  traversable: 0
+  traversable: 1
+  color: {r: 0.24871886, g: 1, b: 0, a: 1}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
   neighbors: []
   owner: {fileID: 0}
 --- !u!1001 &3840190859054699136
@@ -208,11 +209,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15f1174a35d1c9d4fadb2b96aed53d26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15f1174a35d1c9d4fadb2b96aed53d26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 15f1174a35d1c9d4fadb2b96aed53d26, type: 3}
       propertyPath: m_Name

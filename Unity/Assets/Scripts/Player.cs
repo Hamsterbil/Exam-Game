@@ -3,9 +3,14 @@ using UnityEngine;
 
 public class Player : GridPlayer
 {
+    public override string playerTypeName => gameObject.name;
+    public int money;
+    public int population;
+    public int military;
+    public int happiness;
+
     public CameraController playerCamera;
-    public override string playerTypeName => "Player ";
-    public LayerMask hexCellLayerMask;
+    public LayerMask hexTileLayerMask;
 
     public override void StartPlayer()
     {
@@ -19,12 +24,36 @@ public class Player : GridPlayer
 
         if (Input.GetMouseButtonDown(0)) // Check for left mouse button click
         {
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, hexCellLayerMask))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, hexTileLayerMask))
             {
-                HexCell hexCell = hit.collider.gameObject.GetComponent<HexCell>();
-                CheckAndAddCell(hexCell);
+                HexTile hexTile = hit.collider.gameObject.GetComponent<HexTile>();
+                CheckAndAddTile(hexTile);
             }
         }
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
+
+        HighlightNeighbors();
+    }
+
+    private void HighlightNeighbors()
+    {
+        foreach (HexTile ownedTile in ownedTiles)
+        {
+            foreach (HexTile neighbor in ownedTile.neighbors)
+            {
+                if (neighbor != null && neighbor.traversable && neighbor.owner != this)
+                {
+                    neighbor.color = Color.red;
+                }
+            }
+        }
+    }
+
+    public void RemoveHighlights(HexTile ownedTile)
+    {
+        foreach (HexTile neighbor in ownedTile.neighbors)
+        {
+            neighbor.color = neighbor.originalColor;
+        }
     }
 }

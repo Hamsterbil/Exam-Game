@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -9096915944969514947}
   m_Layer: 3
   m_Name: Mountain
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,10 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   q: 0
   r: 0
-  typeName: Mountain
-  color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   cost: 0
+  typeName: Mountain
   traversable: 0
+  color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
+  neighbors: []
   owner: {fileID: 0}
 --- !u!65 &-9096915944969514947
 BoxCollider:
@@ -123,11 +125,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15f1174a35d1c9d4fadb2b96aed53d26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15f1174a35d1c9d4fadb2b96aed53d26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 15f1174a35d1c9d4fadb2b96aed53d26, type: 3}
       propertyPath: m_Name

@@ -1,86 +1,186 @@
 @startuml
 
+HexGrid --> HexTile : Contains
+HexGrid --> Settings : Contains
+HexGrid --> GridPlayer : Contains
+HexTile --> GridPlayer : Owned By
+GridPlayer --> HexTile : Owns
+GridPlayer --|> Player : Inheritance
+GridPlayer --|> Enemy : Inheritance
+Player --> Upgrades : Contains
 
-Player <-- Movement
-Player <-- Time
-Player <-- Upgrades
-Enemy <-- EnemyMovement
-Envoriment <-- Player
-Envoriment <-- Enemy
-Envoriment <|-- GrassTile
-Envoriment <|-- WaterTile
-Envoriment <|-- MountainTile
-Envoriment <|-- DesertTile
-Envoriment <|-- ForestTile
-Envoriment <|-- SnowTile
-Envoriment <|-- CityTile
-Envoriment <|-- TreasureTile
+HexTile --|> Grass : Inheritance
+HexTile --|> Water : Inheritance
+HexTile --|> Mountain : Inheritance
+HexTile --|> Desert : Inheritance
+HexTile --|> Forest : Inheritance
+HexTile --|> Snow : Inheritance
+HexTile --|> City : Inheritance
+HexTile --|> Treasure : Inheritance
 
-class Envoriment
+ResourceManager --> CashGeneration : Contains
+ResourceManager --> PopulationGeneration : Contains
+
+class HexGrid
 {
-    +Void SpawnMap()
-    +Void SpawnPlayer()
-    +Void SpawnEnemy()
+    +Settings settings;
+    +HexTile[] tilePrefabs;
+    +List<HexTile> tiles;
 
-    
-    +string TileInfo
-    +int TileCost
+    +void Awake()
+    +void Update()
+    +void CreateGrid(int N)
+    +void AddEnemies(int amount)
 }
 
-class GrassTile
+class HexTile
 {
-    
+    +int q;
+    +int r;
+    +int cost;
+    +string typeName;
+    +bool traversable;
+    +Color color;
+    +Color originalColor;
+    +Vector3 originalScale;
+    +List<HexTile> neighbors;
+    +GridPlayer owner;
+
+    +void InitTile(int Q, int R)
+    +void Start()
+    +void Update()
+    +void SetOwner(GriPlayer player, HexTile previousTile)
+    +void OnMouseEnter()
+    +void OnMouseExit()
+    +void OnMouseDown()
+    +bool EligibleForPurchase()
+    -List<HexTile> GetNeighbors(List<HexTile> allTiles)
 }
 
-class WaterTile
+class Grass
 {
-  
+    -string tileName;
+    -int tileCost
+    -bool isTraversable;
+
+    +Grass()
 }
 
-class MountainTile
+class Water
 {
- 
+    -string tileName;
+    -int tileCost
+    -bool isTraversable;
+
+    +Water()
 }
 
-class DesertTile
+class Mountain
 {
- 
+    -string tileName;
+    -int tileCost
+    -bool isTraversable;
+
+    +Mountain()
 }
 
-class ForestTile
+class Desert
 {
-  
+    -string tileName;
+    -int tileCost
+    -bool isTraversable;
+
+    +Desert()
 }
 
-class SnowTile
+class Forest
 {
+    -string tileName;
+    -int tileCost
+    -bool isTraversable;
 
+    +Forest()
 }
 
-class CityTile
+class Snow
 {
+    -string tileName;
+    -int tileCost
+    -bool isTraversable;
 
+    +Snow()
 }
 
-class TreasureTile
+class City
 {
-  
+    -string tileName;
+    -int tileCost
+    -bool isTraversable;
+
+    +City()
 }
+
+class Treasure
+{
+    -string tileName;
+    -int tileCost
+    -bool isTraversable;
+
+    +Treasure()
+}
+
+class GridPlayer
+{
+    +abstract string playerTypeName;
+    +Color color;
+    +HexTile ownedTilePrefab;
+    +HexGrid grid;
+    +List<HexTile> ownedTiles;
+    +Settings settings;
+
+    -virtual void Start()
+    -virtual void Update()
+    +abstract void StartPlayer()
+    +abstract void UpdatePlayer()
+
+    +void CheckAndAddCell(HexTile tile)
+    +CanAddCell(HexTile tile)
+    +void AddCell(HexTile tile)
+}
+
 class Player
 {
-    +void OwnTiles()
-    +string CityInfo
+    +override string playerTypeName;
+    +int money;
+    +int population;
+    +int military;
+    +int happiness;
+    +CameraController playerCamera;
+    +LayerMask hexCellLayerMask;
+
+    +override void StartPlayer()
+    +override void UpdatePlayer()
+    -void HighlightNeighbors()
+    +void RemoveHighlights()
 }
 
-Class Movement
+class Enemy
 {
+    +override string playerTypeName;
+    +float enemyTurnTime;
+
+    +override void StartPlayer()
+    +override void UpdatePlayer()
+    -IEnumerator EnemyTurn()
     +void TakeTile()
 }
 
-Class EnemyMovement
+Class Settings
 {
-    +Void TimeToTake()
-    +Void TakeTile()
+    +int mapSizeFromCenter;
+    +float waveAmount;
+    +float waveHeight;
+    +float waveSpeed;
 }
 
 class Upgrades
@@ -94,16 +194,42 @@ class Upgrades
     +Void HappinessPerk()
 }
 
-class Enemy
+class TextManager
 {
-    +void OwnTiles()
+    +Text moneyText;
+    +Text populationText;
+    +Text militaryText;
+    +Text happinessText;
+    +Player player;
+
+    +void Update()
 }
 
-Class Time
+class ResourceManager
 {
-    +Void Cash()
-    +Void Happiness()
-    +Void Military()
+
+}
+
+class CashGeneration
+{
+
+}
+
+class PopulationGeneration
+{
+
+}
+
+class CameraController
+{
+    +float moveSpeed;
+    -bool isDragging;
+    -Vector3 dragStartPosition;
+
+    +void Update()
+    +void FindPlayer(Player player)
+    -void MoveMouse()
+    -void MoveWASD()
 }
 
 @enduml

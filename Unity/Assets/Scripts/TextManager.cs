@@ -5,21 +5,19 @@ using UnityEngine.UI;
 
 public class TextManager : MonoBehaviour
 {
-
     public Text moneyText;
+    public Text populationText;
+    public Text militaryText;
+    public Text happinessText;
 
     public Player player;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
     {
         moneyText.text = "" + player.money;
-            
+        populationText.text = "" + player.population;
+        happinessText.text = "" + player.happiness;
+        militaryText.text = "" + player.military;
     }
 }

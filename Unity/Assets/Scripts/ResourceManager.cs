@@ -4,15 +4,13 @@ using System;
 public class ResourceManager : MonoBehaviour
 {
     public Player player;
-    public int startingCash;
+    public int startingMoney;
     public int startingPopulation;
-    public int Happiness {get; private set;}
-    public int MaxHappiness = 100; // Maximum happiness
-    public int maxMilitaryUnits = 1000; // Maximum military units based on population
-
-    private int cash;
+    public int happiness {get; private set;}
+    public int maxHappiness; // Maximum happiness
+    public int maxMilitary; // Maximum military units based on population
     private int population;
-    private int militaryUnits = 0;
+    private int military;
 
     public event Action<int> OnCashChanged; // Event to notify when cash changes
     public event Action<int> OnPopulationChanged; // Event to notify when population changes
@@ -20,10 +18,10 @@ public class ResourceManager : MonoBehaviour
     public event Action<int> OnHappinessChanged; // Event to notify when happiness changes
     void Start()
     {
-        player.money = startingCash;
+        player.money = startingMoney;
         player.population = startingPopulation;
         CalculateMilitaryUnits();
-        Happiness = MaxHappiness; // Start with max happiness
+        happiness = maxHappiness; // Start with max happiness
 
     }
 
@@ -81,17 +79,17 @@ public class ResourceManager : MonoBehaviour
     public void CalculateMilitaryUnits()
     {
         // Calculate military units based on population
-        militaryUnits = Mathf.Min(GetPopulation() / 10, maxMilitaryUnits);
+        military = Mathf.Min(GetPopulation() / 10, maxMilitary);
     }
 
     public int GetMilitaryUnits()
     {
-        return militaryUnits;
+        return military;
     }
 
     public void ModifyHappiness(int amount)
     {
-        Happiness += amount;
-        Happiness = Mathf.Clamp(Happiness, 0, MaxHappiness);
+        happiness += amount;
+        happiness = Mathf.Clamp(happiness, 0, maxHappiness);
     }
 }
