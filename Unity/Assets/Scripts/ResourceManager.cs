@@ -6,7 +6,7 @@ public class ResourceManager : MonoBehaviour
     public Player player;
     public int startingMoney;
     public int startingPopulation;
-    public int happiness {get; private set;}
+    public int happiness;
     public int maxHappiness; // Maximum happiness
     public int maxMilitary; // Maximum military units based on population
     private int population;
@@ -20,6 +20,7 @@ public class ResourceManager : MonoBehaviour
     {
         player.money = startingMoney;
         player.population = startingPopulation;
+        player.happiness = maxHappiness;
         CalculateMilitaryUnits();
         happiness = maxHappiness; // Start with max happiness
 
