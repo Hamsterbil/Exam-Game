@@ -3,20 +3,13 @@
 HexGrid --> HexTile : Contains
 HexGrid --> Settings : Contains
 HexGrid --> GridPlayer : Contains
-HexTile --> GridPlayer : Owned By
 GridPlayer --> HexTile : Owns
 GridPlayer --|> Player : Inheritance
 GridPlayer --|> Enemy : Inheritance
 Player --> Upgrades : Contains
 
-HexTile --|> Grass : Inheritance
-HexTile --|> Water : Inheritance
-HexTile --|> Mountain : Inheritance
-HexTile --|> Desert : Inheritance
-HexTile --|> Forest : Inheritance
-HexTile --|> Snow : Inheritance
-HexTile --|> City : Inheritance
-HexTile --|> Treasure : Inheritance
+HexTile --|> TerrainTypes : Inheritance
+HexTile --> Outline : Contains
 
 ResourceManager --> CashGeneration : Contains
 ResourceManager --> PopulationGeneration : Contains
@@ -57,76 +50,79 @@ class HexTile
     -List<HexTile> GetNeighbors(List<HexTile> allTiles)
 }
 
-class Grass
+package "TerrainTypes"
 {
-    -string tileName;
-    -int tileCost
-    -bool isTraversable;
+    class Grass
+    {
+        -string tileName;
+        -int tileCost
+        -bool isTraversable;
 
-    +Grass()
-}
+        +Grass()
+    }
 
-class Water
-{
-    -string tileName;
-    -int tileCost
-    -bool isTraversable;
+    class Water
+    {
+        -string tileName;
+        -int tileCost
+        -bool isTraversable;
 
-    +Water()
-}
+        +Water()
+    }
 
-class Mountain
-{
-    -string tileName;
-    -int tileCost
-    -bool isTraversable;
+    class Mountain
+    {
+        -string tileName;
+        -int tileCost
+        -bool isTraversable;
 
-    +Mountain()
-}
+        +Mountain()
+    }
 
-class Desert
-{
-    -string tileName;
-    -int tileCost
-    -bool isTraversable;
+    class Desert
+    {
+        -string tileName;
+        -int tileCost
+        -bool isTraversable;
 
-    +Desert()
-}
+        +Desert()
+    }
 
-class Forest
-{
-    -string tileName;
-    -int tileCost
-    -bool isTraversable;
+    class Forest
+    {
+        -string tileName;
+        -int tileCost
+        -bool isTraversable;
 
-    +Forest()
-}
+        +Forest()
+    }
 
-class Snow
-{
-    -string tileName;
-    -int tileCost
-    -bool isTraversable;
+    class Snow
+    {
+        -string tileName;
+        -int tileCost
+        -bool isTraversable;
 
-    +Snow()
-}
+        +Snow()
+    }
 
-class City
-{
-    -string tileName;
-    -int tileCost
-    -bool isTraversable;
+    class City
+    {
+        -string tileName;
+        -int tileCost
+        -bool isTraversable;
 
-    +City()
-}
+        +City()
+    }
 
-class Treasure
-{
-    -string tileName;
-    -int tileCost
-    -bool isTraversable;
+    class Treasure
+    {
+        -string tileName;
+        -int tileCost
+        -bool isTraversable;
 
-    +Treasure()
+        +Treasure()
+    }
 }
 
 class GridPlayer
@@ -136,7 +132,6 @@ class GridPlayer
     +HexTile ownedTilePrefab;
     +HexGrid grid;
     +List<HexTile> ownedTiles;
-    +Settings settings;
 
     -virtual void Start()
     -virtual void Update()
@@ -160,6 +155,7 @@ class Player
 
     +override void StartPlayer()
     +override void UpdatePlayer()
+    -void Raycast()
     -void HighlightNeighbors()
     +void RemoveHighlights()
 }
@@ -230,6 +226,11 @@ class CameraController
     +void FindPlayer(Player player)
     -void MoveMouse()
     -void MoveWASD()
+}
+
+class Outline
+{
+
 }
 
 @enduml

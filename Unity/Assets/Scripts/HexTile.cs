@@ -23,14 +23,15 @@ public class HexTile : MonoBehaviour
 
     void Start()
     {
-        if (q == 0 && r == 0 && owner == null)
-        {
-            name = "Center ----------------------------";
-            color = Color.white;
-        }
+        // if (q == 0 && r == 0 && owner == null)
+        // {
+        //     name = "Center ----------------------------";
+        //     color = Color.white;
+        // }
         originalColor = color;
         originalScale = transform.localScale;
         GetNeighbors(GameObject.Find("HexGrid").GetComponent<HexGrid>().tiles);
+        GetComponentInChildren<MeshRenderer>().material.color = color;
     }
 
     protected virtual void Update()

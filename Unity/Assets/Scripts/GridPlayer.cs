@@ -21,7 +21,7 @@ public abstract class GridPlayer : MonoBehaviour
         if (grid.tiles.Count > 0)
         {
             int randomTile = Random.Range(0, grid.tiles.Count);
-            while (grid.tiles[randomTile].owner != null && !grid.tiles[randomTile].traversable)
+            while (grid.tiles[randomTile].owner != null || grid.tiles[randomTile].traversable == false)
             {
                 randomTile = Random.Range(0, grid.tiles.Count);
             }

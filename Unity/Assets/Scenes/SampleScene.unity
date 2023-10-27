@@ -974,7 +974,7 @@ MonoBehaviour:
   playerCamera: {fileID: 963194229}
   hexTileLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!4 &1034780180
 Transform:
   m_ObjectHideFlags: 0
@@ -1099,8 +1099,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 8aa9d3ea61f09164c97209e5238b0a94, type: 2}
   tilePrefabs:
+  - {fileID: 1604922606449309724, guid: 13b73edb1d7f1944eba657ad9edd42ad, type: 3}
+  - {fileID: 383938362210592251, guid: fa0c5e374f25cbc42ae9b53f1d4abf5c, type: 3}
   - {fileID: -7536322218755516482, guid: 89f94302be4a46244aaf0a919f3b373d, type: 3}
   - {fileID: 1454195421749708219, guid: f74299ad59ee082468a324393d21def4, type: 3}
+  - {fileID: -1944359363860365657, guid: 666c4e940ce96a642928c82fa0979eea, type: 3}
+  - {fileID: 3705312708081439422, guid: 446114aba4fcc074bb0314cb2041656b, type: 3}
   tiles: []
 --- !u!4 &1117048374
 Transform:
