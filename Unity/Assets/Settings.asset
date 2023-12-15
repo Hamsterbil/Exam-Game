@@ -19,11 +19,11 @@ MonoBehaviour:
   mapExtraLayers: 10
   amountOfEnemies: 4
   enemyTurnTime: 1
-  perlinScale: 10
+  perlinScale: 8
   perlinScale1: 100
   perlinScale2: 100
-  perlinPow: 2
-  perlinWaterLevel: 0.17
-  perlinLandLevel: 0.23
+  perlinPow: 1.7
+  perlinWaterLevel: 0.18
+  perlinLandLevel: 0.1
   perlinOffsetX: 100
   perlinOffsetZ: 100
