@@ -12,6 +12,7 @@ public class PopulationGeneration : MonoBehaviour
     {
         StartCoroutine(GeneratePopulation());
         resourceManager = GetComponent<ResourceManager>();
+        int startingPopulation = 10000;
     }
     
     private IEnumerator GeneratePopulation()

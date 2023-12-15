@@ -6,7 +6,7 @@ public class ResourceManager : MonoBehaviour
     public Player player;
     public int startingMoney;
     public int startingPopulation;
-    public int startingmilitary;
+    public int startingMilitary;
     public int startingHappiness;
     public int happiness;
     public int maxHappiness; // Maximum happiness
@@ -23,8 +23,8 @@ public class ResourceManager : MonoBehaviour
         player.money = startingMoney;
         player.population = startingPopulation;
         player.happiness = maxHappiness;
-        player.military = startingmilitary;
-        CalculateMilitaryUnits();
+        player.military = startingMilitary;
+        //CalculateMilitaryUnits();
         happiness = maxHappiness; // Start with max happiness
 
     }
@@ -80,16 +80,12 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    public void CalculateMilitaryUnits()
-    {
+    //public void CalculateMilitaryUnits()
+    //{
         // Calculate military units based on population
-        military = Mathf.Min(GetPopulation() / 10, maxMilitary);
-    }
+        //military = Mathf.Min(GetPopulation() / 10, maxMilitary);
 
-    public int GetMilitaryUnits()
-    {
-        return military;
-    }
+    //}
 
     public void ModifyHappiness(int amount)
     {

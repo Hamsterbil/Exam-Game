@@ -11,6 +11,7 @@ public class CashGeneration : MonoBehaviour
     {
         resourceManager = GetComponent<ResourceManager>();
         StartCoroutine(GenerateCash());
+        int startingMoney = 1000;
     }
 
     private IEnumerator GenerateCash()
@@ -23,4 +24,5 @@ public class CashGeneration : MonoBehaviour
             resourceManager.AddCash(cashPerInterval);
         }
     }
+
 }
