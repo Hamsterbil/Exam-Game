@@ -943,6 +943,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1034780180}
   - component: {fileID: 1034780179}
+  - component: {fileID: 1034780181}
   m_Layer: 0
   m_Name: 'Player '
   m_TagString: Untagged
@@ -969,12 +970,13 @@ MonoBehaviour:
   settings: {fileID: 0}
   money: 0
   population: 0
-  military: 100
+  military: 0
   happiness: 0
   playerCamera: {fileID: 963194229}
+  resourceManager: {fileID: 1034780181}
   hexTileLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!4 &1034780180
 Transform:
   m_ObjectHideFlags: 0
@@ -990,6 +992,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1034780181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034780178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fd63cbb054b9cc44822551c2b975ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1034780179}
+  startingMoney: 100
+  startingPopulation: 100
+  startingmilitary: 0
+  startingHappiness: 0
+  happiness: 0
+  maxHappiness: 1000
+  maxMilitary: 1000
+  military: 0
 --- !u!1 &1106313736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,10 +1460,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1595157074}
   - component: {fileID: 1595157073}
-  - component: {fileID: 1595157075}
   - component: {fileID: 1595157076}
   m_Layer: 0
-  m_Name: ResourceManager
+  m_Name: ResourceGeneration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1458,7 +1480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 718009226fe58524e9ccaa305a79e2c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceManager: {fileID: 1595157075}
+  resourceManager: {fileID: 1034780181}
   cashPerInterval: 100
   cashGenerationInterval: 1
 --- !u!4 &1595157074
@@ -1509,7 +1531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01b9af8bf06eaf47908b99aa6c5e933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceManager: {fileID: 1595157075}
+  resourceManager: {fileID: 1034780181}
   populationPerInterval: 100
   populationGenerationInterval: 1
 --- !u!1 &1919034866

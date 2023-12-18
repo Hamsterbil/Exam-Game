@@ -71,15 +71,7 @@ public abstract class GridPlayer : MonoBehaviour
                         }
                         if (this is Player currentPlayer)
                         {
-                            if (hexTile.cost <= currentPlayer.military)
-                            {
-                                currentPlayer.military -= hexTile.cost;
-                            }
-                            else
-                            {
-                                Debug.Log("Not enough military to buy this tile");
-                                return false;
-                            }
+                            currentPlayer.resourceManager.SubtractMilitary(hexTile.cost);
                         }
 
                         hexTile.owner.ownedTiles.Remove(hexTile);
@@ -88,15 +80,7 @@ public abstract class GridPlayer : MonoBehaviour
                     {
                         if (this is Player currentPlayer)
                         {
-                            if (hexTile.cost <= currentPlayer.money)
-                            {
-                                currentPlayer.money -= hexTile.cost;
-                            }
-                            else
-                            {
-                                Debug.Log("Not enough money to buy this tile");
-                                return false;
-                            }
+                            currentPlayer.resourceManager.SubtractCash(hexTile.cost);
                         }
                     }
 
@@ -111,10 +95,10 @@ public abstract class GridPlayer : MonoBehaviour
     {
         HexTile playerTile = Instantiate(ownedTilePrefab);
 
-        playerTile.InitTile(hexTile.q, hexTile.r); // Pass the original cost
+        playerTile.InitTile(hexTile.q, hexTile.r, color, hexTile.originalScale); // Pass the original cost
         playerTile.transform.position = new Vector3(
             hexTile.q * 1.51f,
-            0,
+            hexTile.transform.position.y,
             Mathf.Sqrt(3) * (hexTile.r + hexTile.q / 2.0f)
         );
 

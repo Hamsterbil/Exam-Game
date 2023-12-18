@@ -101,3 +101,4 @@ What we envision the game to end up like.
 ## Would
 
 # Class Diagram - PUML
+![Class Diagram](Game.puml)

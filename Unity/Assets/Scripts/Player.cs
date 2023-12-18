@@ -9,7 +9,8 @@ public class Player : GridPlayer
     public int military;
     public int happiness;
 
-    public CameraController playerCamera;
+    public CameraController playerCamera;    
+    public ResourceManager resourceManager;
     public LayerMask hexTileLayerMask;
 
     public override void StartPlayer()
