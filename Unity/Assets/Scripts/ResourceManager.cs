@@ -6,11 +6,13 @@ public class ResourceManager : MonoBehaviour
     public Player player;
     public int startingMoney;
     public int startingPopulation;
-    public int happiness {get; private set;}
+    public int startingmilitary;
+    public int startingHappiness;
+    public int happiness;
     public int maxHappiness; // Maximum happiness
     public int maxMilitary; // Maximum military units based on population
     private int population;
-    private int military;
+    public int military;
 
     public event Action<int> OnCashChanged; // Event to notify when cash changes
     public event Action<int> OnPopulationChanged; // Event to notify when population changes
@@ -20,6 +22,8 @@ public class ResourceManager : MonoBehaviour
     {
         player.money = startingMoney;
         player.population = startingPopulation;
+        player.happiness = maxHappiness;
+        player.military = startingmilitary;
         CalculateMilitaryUnits();
         happiness = maxHappiness; // Start with max happiness
 
