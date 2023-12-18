@@ -12,18 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c99d6fbab52cb4489b728fa6cad5494, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  waveAmount: 1
+  waveAmount: 0.3
   waveHeight: 0.5
-  waveSpeed: 0.5
+  waveSpeed: 0.75
   mapSizeFromCenter: 40
-  mapExtraLayers: 10
+  mapExtraLayers: 5
   amountOfEnemies: 4
   enemyTurnTime: 1
   perlinScale: 10
   perlinScale1: 100
   perlinScale2: 100
-  perlinPow: 2
-  perlinWaterLevel: 0.17
-  perlinLandLevel: 0.23
+  perlinPow: 1.5
+  perlinWaterLevel: 0.2
+  perlinLandLevel: 0.15
   perlinOffsetX: 100
   perlinOffsetZ: 100
+  randomizeOffset: 0

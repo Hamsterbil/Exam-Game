@@ -29,5 +29,5 @@ public class Settings : ScriptableObject
 
     public float perlinOffsetX;
     public float perlinOffsetZ;
-
+    public bool randomizeOffset;
 }

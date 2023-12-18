@@ -87,6 +87,24 @@ public class ResourceManager : MonoBehaviour
         return military;
     }
 
+    public void AddMilitary(int amount)
+    {
+        military += amount;
+    }
+
+    public void SubtractMilitary(int amount)
+    {
+        if (military >= amount)
+        {
+            military -= amount;
+        }
+        else
+        {
+            // Handle military-related errors, if necessary
+            Debug.LogWarning("Insufficient military units!");
+        }
+    }
+
     public void ModifyHappiness(int amount)
     {
         happiness += amount;
