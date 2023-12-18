@@ -976,7 +976,7 @@ MonoBehaviour:
   resourceManager: {fileID: 1034780181}
   hexTileLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!4 &1034780180
 Transform:
   m_ObjectHideFlags: 0
@@ -1007,8 +1007,12 @@ MonoBehaviour:
   player: {fileID: 1034780179}
   startingMoney: 100
   startingPopulation: 100
+  startingmilitary: 0
+  startingHappiness: 0
+  happiness: 0
   maxHappiness: 1000
   maxMilitary: 1000
+  military: 0
 --- !u!1 &1106313736
 GameObject:
   m_ObjectHideFlags: 0

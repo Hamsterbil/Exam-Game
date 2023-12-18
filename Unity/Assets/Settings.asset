@@ -23,7 +23,7 @@ MonoBehaviour:
   perlinScale1: 100
   perlinScale2: 100
   perlinPow: 1.5
-  perlinWaterLevel: 0.2
+  perlinWaterLevel: 0.15
   perlinLandLevel: 0.15
   perlinOffsetX: 100
   perlinOffsetZ: 100

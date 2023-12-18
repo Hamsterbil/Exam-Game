@@ -18,6 +18,8 @@ public class HexGrid : MonoBehaviour
 
     public HexTile[] tilePrefabs;
     public List<HexTile> tiles;
+    private Color tileColor;
+    private Vector3 tileScale;
 
     void Awake()
     {
@@ -54,15 +56,21 @@ public class HexGrid : MonoBehaviour
                 float yOffset = Mathf.Clamp(
                     (
                         Mathf.Sin(Time.time * settings.waveSpeed + tile.q * settings.waveAmount)
-                        + Mathf.Cos(0.5f * Time.time * settings.waveSpeed + tile.q * settings.waveAmount)
-                        + Mathf.Sin(0.25f * Time.time * settings.waveSpeed + tile.q * settings.waveAmount * 3f + tile.r * settings.waveAmount)
+                        + Mathf.Cos(
+                            0.5f * Time.time * settings.waveSpeed + tile.q * settings.waveAmount
+                        )
+                        + Mathf.Sin(
+                            0.25f * Time.time * settings.waveSpeed
+                                + tile.q * settings.waveAmount * 3f
+                                + tile.r * settings.waveAmount
+                        )
                     ) * settings.waveHeight,
                     -0.5f,
                     0f
                 );
                 tile.transform.position = new Vector3(
                     tile.transform.position.x,
-                    yOffset,
+                    Mathf.Clamp(tile.transform.position.y + yOffset, 0.1f, 1),
                     tile.transform.position.z
                 );
             }
@@ -86,22 +94,12 @@ public class HexGrid : MonoBehaviour
     private void CreateTile(int q, int r)
     {
         int tileType = GetPerlinID(q, r);
-        if (q < -N || q > N || r < -N || r > N || q + r < -N || q + r > N)
-        {
-            tileType = 0; // Water tile
-        }
+
         HexTile tile = Instantiate(tilePrefabs[tileType]);
 
-        tile.InitTile(q, r);
+        tile.InitTile(q, r, tileColor, tileScale);
         tile.transform.position = new Vector3(q * 1.51f, 0, Mathf.Sqrt(3) * (r + q / 2.0f));
-        if (tileType != 0)
-        {
-            tile.transform.position = new Vector3(
-                tile.transform.position.x,
-                tile.transform.position.y + (tileType / 2f),
-                tile.transform.position.z
-            );
-        }
+
         if (tile.traversable)
         {
             traversableAmount++;
@@ -135,58 +133,64 @@ public class HexGrid : MonoBehaviour
 
     private int GetPerlinID(int q, int r)
     {
-        float perlinGen = GeneratePerlin(q, r, false);
-        float perlinMoisture = GeneratePerlin(q + 0.5f, r + 0.5f, false);
-        float perlinRivers = GeneratePerlin(q, r, false);
-        
-        float perlin = perlinGen + perlinMoisture;
-
-        if (perlin <= settings.perlinWaterLevel && perlin >= 0.03f)
+        float perlinElevation = GeneratePerlin(q, r, false);
+        tileScale = new Vector3(1f, perlinElevation * 10, 1f);
+        if (q < -N || q > N || r < -N || r > N || q + r < -N || q + r > N)
         {
+            tileColor = Color.Lerp(Color.blue, Color.white, perlinElevation / 2);
+            tileScale = new Vector3(1f, Mathf.Clamp(perlinElevation * 10, 1f, 2f), 1f);
+            return 0; // Water tile
+        }
+        if (perlinElevation <= settings.perlinWaterLevel && perlinElevation >= 0.03f)
+        {
+            tileColor = Color.Lerp(Color.blue, Color.white, perlinElevation);
+            tileScale = new Vector3(1f, Mathf.Clamp(perlinElevation * 10, 1f, 2f), 1f);
             return 0;
         }
         else if (
-            perlin <= settings.perlinWaterLevel + 0.03f
-            && perlin >= settings.perlinLandLevel - 0.01f
+            perlinElevation <= settings.perlinWaterLevel + 0.03f
+            && perlinElevation >= settings.perlinLandLevel - 0.01f
         )
         {
+            tileColor = Color.Lerp(Color.yellow, Color.white, perlinElevation);
             return 1;
         }
-        else if (
-            perlin <= settings.perlinLandLevel + 0.15 && perlin >= settings.perlinLandLevel - 0.15f
-        )
+        else if (perlinElevation <= settings.perlinLandLevel + 0.15f && perlinElevation >= 0.05f)
         {
+            tileColor = Color.Lerp(Color.green, Color.white, perlinElevation);
             return 2;
         }
-        else if (perlin <= settings.perlinLandLevel + 0.2f)
+        else if (perlinElevation <= settings.perlinLandLevel + 0.3f)
         {
+            tileColor = Color.Lerp(Color.green, Color.black, perlinElevation);
             return 3;
         }
-        else if (perlin <= settings.perlinLandLevel + 0.4f)
+        else if (perlinElevation <= settings.perlinLandLevel + 0.4f)
         {
+            tileColor = Color.Lerp(Color.gray, Color.black, perlinElevation / 2);
             return 4;
         }
         else
         {
+            tileColor = Color.Lerp(Color.white, Color.white, perlinElevation);
             return 5;
         }
     }
 
     private float GeneratePerlin(float x, float z, bool draw)
     {
-        x += x_offset;
-        z += z_offset;
         if (draw)
         {
-            x = settings.perlinOffsetX;
-            z = settings.perlinOffsetZ;
+            x += settings.perlinOffsetX;
+            z += settings.perlinOffsetZ;
+        }
+        else
+        {
+            x += x_offset;
+            z += z_offset;
         }
         float noise =
-            1
-                * Mathf.PerlinNoise(
-                    1 * (x / settings.perlinScale),
-                    1 * (z / settings.perlinScale)
-                )
+            1 * Mathf.PerlinNoise(1 * (x / settings.perlinScale), 1 * (z / settings.perlinScale))
             + 0.5f
                 * Mathf.PerlinNoise(
                     2 * (x / settings.perlinScale1),
@@ -233,9 +237,6 @@ public class HexGrid : MonoBehaviour
             for (int r = r1; r <= r2; r++)
             {
                 float perlinElevation = GeneratePerlin(q, r, true);
-                // float perlinMoisture = GeneratePerlin(q / 4f, r * 0.8f, true);
-                // float perlinRivers = GeneratePerlin(q, r, true);
-                // perlinRivers = perlinRivers * 2;
 
                 if (perlinElevation <= settings.perlinWaterLevel && perlinElevation >= 0.03f)
                 {
@@ -248,16 +249,12 @@ public class HexGrid : MonoBehaviour
                 {
                     Gizmos.color = Color.Lerp(Color.yellow, Color.white, perlinElevation);
                 }
-                else if (
-                    perlinElevation <= settings.perlinLandLevel + 0.15
-                    && perlinElevation >= settings.perlinLandLevel - 0.15f
-                )
+                else if (perlinElevation <= settings.perlinLandLevel + 0.15)
                 {
                     Gizmos.color = Color.Lerp(Color.green, Color.white, perlinElevation);
                 }
                 else if (perlinElevation <= settings.perlinLandLevel + 0.3f)
                 {
-                    //Dark green
                     Gizmos.color = Color.Lerp(Color.green, Color.black, perlinElevation);
                 }
                 else if (perlinElevation <= settings.perlinLandLevel + 0.4f)
@@ -284,15 +281,6 @@ public class HexGrid : MonoBehaviour
                     new Vector3(q * 1.5f, 3, Mathf.Sqrt(3) * (r + q / 2.0f)),
                     new Vector3(1.51f, perlinElevation * 20, 1.51f)
                 );
-                // //Draw as cube with moisture
-                // Gizmos.color = Color.Lerp(Color.blue, Color.white, perlinMoisture);
-                // Gizmos.DrawCube(new Vector3(q * 1.5f, 50, Mathf.Sqrt(3) * (r + q / 2.0f)),
-                //     new Vector3(1.51f, perlinMoisture * 20, 1.51f));
-
-                // //Draw as cube with rivers
-                // Gizmos.color = Color.Lerp(Color.blue, Color.white, perlinRivers);
-                // Gizmos.DrawCube(new Vector3(q * 1.5f, 100, Mathf.Sqrt(3) * (r + q / 2.0f)),
-                //     new Vector3(1.51f, perlinRivers * 20, 1.51f));
             }
         }
     }

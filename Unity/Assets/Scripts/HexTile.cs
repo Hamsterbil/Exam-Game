@@ -10,15 +10,19 @@ public class HexTile : MonoBehaviour
     public bool traversable;
     public Color color;
     public Color originalColor;
-    private Vector3 originalScale;
+    public Vector3 originalScale;
     public List<HexTile> neighbors;
     public GridPlayer owner;
 
-    public void InitTile(int Q, int R)
+    public void InitTile(int Q, int R, Color color, Vector3 scale)
     {
         q = Q;
         r = R;
         name = typeName + " (" + q + "," + r + ")";
+        this.color = color;
+        originalColor = color;
+        transform.localScale = scale;
+        originalScale = scale;
     }
 
     void Start()
@@ -28,8 +32,7 @@ public class HexTile : MonoBehaviour
         //     name = "Center ----------------------------";
         //     color = Color.white;
         // }
-        originalColor = color;
-        originalScale = transform.localScale;
+
         GetNeighbors(GameObject.Find("HexGrid").GetComponent<HexGrid>().tiles);
         GetComponentInChildren<MeshRenderer>().material.color = color;
     }
@@ -51,7 +54,7 @@ public class HexTile : MonoBehaviour
     {
         if (traversable)
         {
-            originalScale = transform.localScale;
+            // originalScale = transform.localScale;
             color = Color.Lerp(color, Color.black, 0.2f);
             transform.localScale = new Vector3(1, originalScale.y * 1.1f, 1);
         }

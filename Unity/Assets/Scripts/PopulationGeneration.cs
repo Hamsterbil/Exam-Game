@@ -11,7 +11,6 @@ public class PopulationGeneration : MonoBehaviour
     private void Start()
     {
         StartCoroutine(GeneratePopulation());
-        resourceManager = GetComponent<ResourceManager>();
     }
     
     private IEnumerator GeneratePopulation()

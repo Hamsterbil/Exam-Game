@@ -9,7 +9,6 @@ public class CashGeneration : MonoBehaviour
 
     void Start()
     {
-        resourceManager = GetComponent<ResourceManager>();
         StartCoroutine(GenerateCash());
     }
 

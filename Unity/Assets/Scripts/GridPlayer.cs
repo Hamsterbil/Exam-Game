@@ -95,7 +95,7 @@ public abstract class GridPlayer : MonoBehaviour
     {
         HexTile playerTile = Instantiate(ownedTilePrefab);
 
-        playerTile.InitTile(hexTile.q, hexTile.r); // Pass the original cost
+        playerTile.InitTile(hexTile.q, hexTile.r, color, hexTile.originalScale); // Pass the original cost
         playerTile.transform.position = new Vector3(
             hexTile.q * 1.51f,
             hexTile.transform.position.y,
