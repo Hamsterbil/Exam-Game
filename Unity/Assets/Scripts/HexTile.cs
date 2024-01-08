@@ -10,19 +10,25 @@ public class HexTile : MonoBehaviour
     public bool traversable;
     public Color color;
     public Color originalColor;
-    public Vector3 originalScale;
+    public float originalScale;
     public List<HexTile> neighbors;
     public GridPlayer owner;
 
-    public void InitTile(int Q, int R, Color color, Vector3 scale)
+    public void InitTile(int Q, int R, Color color, float scale, Transform parentObject)
     {
         q = Q;
         r = R;
         name = typeName + " (" + q + "," + r + ")";
         this.color = color;
         originalColor = color;
-        transform.localScale = scale;
+        changeScale(scale);
         originalScale = scale;
+
+        transform.position = new Vector3(
+            q * 1.5f,
+            0,
+            r * Mathf.Sqrt(3) + q * Mathf.Sqrt(3) / 2
+        );
     }
 
     void Start()
@@ -32,9 +38,8 @@ public class HexTile : MonoBehaviour
         //     name = "Center ----------------------------";
         //     color = Color.white;
         // }
-
-        GetNeighbors(GameObject.Find("HexGrid").GetComponent<HexGrid>().tiles);
-        GetComponentInChildren<MeshRenderer>().material.color = color;
+        neighbors = GetNeighbors(GameObject.Find("HexGrid").GetComponent<HexGrid>().tiles, 1);
+        // GetComponentInChildren<MeshRenderer>().material.color = color;
     }
 
     protected virtual void Update()
@@ -47,7 +52,6 @@ public class HexTile : MonoBehaviour
         owner = player;
         name = player.playerTypeName + previousTile.typeName + " (" + q + "," + r + ")";
         player.ownedTiles.Add(this);
-        transform.position += new Vector3(0, 0.5f, 0);
     }
 
     void OnMouseEnter()
@@ -56,7 +60,18 @@ public class HexTile : MonoBehaviour
         {
             // originalScale = transform.localScale;
             color = Color.Lerp(color, Color.black, 0.2f);
-            transform.localScale = new Vector3(1, originalScale.y * 1.1f, 1);
+            if (owner != null)
+            {
+                //Change scale of every tile with the same owner
+                foreach (HexTile tile in owner.ownedTiles)
+                {
+                    tile.changeScale(tile.originalScale * 1.2f);
+                }
+            }
+            else
+            {
+                changeScale(originalScale * 1.2f);
+            }
         }
     }
 
@@ -65,7 +80,18 @@ public class HexTile : MonoBehaviour
         if (traversable)
         {
             color = originalColor;
-            transform.localScale = originalScale;
+            if (owner != null)
+            {
+                //Change scale of every tile with the same owner
+                foreach (HexTile tile in owner.ownedTiles)
+                {
+                    tile.changeScale(tile.originalScale);
+                }
+            }
+            else
+            {
+                changeScale(originalScale);
+            }
         }
     }
 
@@ -78,56 +104,42 @@ public class HexTile : MonoBehaviour
         }
     }
 
+    public void changeScale(float scale)
+    {
+        transform.GetChild(0).localScale = new Vector3(1, 1, scale);
+        for (int i = 1; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).localPosition = new Vector3(0, scale + 1, 0);
+        }
+    }
+
     public bool EligibleForPurchase(GridPlayer player, HexTile neighbor)
     {
         return this != null && traversable && this == neighbor && owner != player;
     }
 
-    private List<HexTile> GetNeighbors(List<HexTile> allTiles)
-    {
-        neighbors = new List<HexTile>();
-
-        int[] neighborDirections = { 0, 1, 2, 3, 4, 5 };
-
-        foreach (int direction in neighborDirections)
+    private List<HexTile> GetNeighbors(List<HexTile> allTiles, int distance)
+    {        
+        List<HexTile> tileNeighbors = new List<HexTile>();
+        for (int q = -distance; q <= distance; q++)
         {
-            int neighborQ = q;
-            int neighborR = r;
+            int r1 = Mathf.Max(-distance, -q - distance);
+            int r2 = Mathf.Min(distance, -q + distance);
 
-            switch (direction)
+            for (int r = r1; r <= r2; r++)
             {
-                case 0:
-                    neighborQ += 1;
-                    break;
-                case 1:
-                    neighborQ += 1;
-                    neighborR -= 1;
-                    break;
-                case 2:
-                    neighborR -= 1;
-                    break;
-                case 3:
-                    neighborQ -= 1;
-                    break;
-                case 4:
-                    neighborQ -= 1;
-                    neighborR += 1;
-                    break;
-                case 5:
-                    neighborR += 1;
-                    break;
-            }
-
-            foreach (HexTile tile in allTiles)
-            {
-                if (tile.q == neighborQ && tile.r == neighborR)
+                if (q != 0 || r != 0)
                 {
-                    neighbors.Add(tile);
-                    break;
+                    foreach (HexTile tile in allTiles)
+                    {
+                        if (tile.q == q + this.q && tile.r == r + this.r)
+                        {
+                            tileNeighbors.Add(tile);
+                        }
+                    }
                 }
             }
         }
-
-        return neighbors;
+        return tileNeighbors;
     }
 }

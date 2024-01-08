@@ -31,9 +31,8 @@ public abstract class GridPlayer : MonoBehaviour
         StartPlayer();
     }
 
-    protected virtual void Update()
+    protected virtual void Update() // Common player logic here
     {
-        // Implement common player logic here
         UpdatePlayer();
         if (ownedTiles.Count == 0)
         {
@@ -43,7 +42,7 @@ public abstract class GridPlayer : MonoBehaviour
     }
 
     public abstract void StartPlayer();
-    public abstract void UpdatePlayer(); // Implement player-specific input logic here
+    public abstract void UpdatePlayer(); // Player-specific input logic here
 
     public void CheckAndAddTile(HexTile hexTile)
     {
@@ -94,13 +93,7 @@ public abstract class GridPlayer : MonoBehaviour
     protected void AddTile(HexTile hexTile)
     {
         HexTile playerTile = Instantiate(ownedTilePrefab);
-
-        playerTile.InitTile(hexTile.q, hexTile.r, color, hexTile.originalScale); // Pass the original cost
-        playerTile.transform.position = new Vector3(
-            hexTile.q * 1.51f,
-            hexTile.transform.position.y,
-            Mathf.Sqrt(3) * (hexTile.r + hexTile.q / 2.0f)
-        );
+        playerTile.InitTile(hexTile.q, hexTile.r, color, hexTile.originalScale, transform); // Pass the original values to the new tile
 
         // Remove hexTile from the grid's tiles list if it exists
         if (grid.tiles.Contains(hexTile))
@@ -115,14 +108,8 @@ public abstract class GridPlayer : MonoBehaviour
         foreach (HexTile neighbor in hexTile.neighbors)
         {
             int index = neighbor.neighbors.IndexOf(hexTile);
-            if (index >= 0)
-            {
-                neighbor.neighbors[index] = playerTile;
-            }
+            neighbor.neighbors[index] = playerTile;
         }
-
-        playerTile.color = color;
-        playerTile.transform.SetParent(transform);
 
         // Debug.Log(playerTypeName + " bought " + playerTile.name);
 

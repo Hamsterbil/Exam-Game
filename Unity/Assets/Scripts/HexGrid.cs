@@ -19,7 +19,7 @@ public class HexGrid : MonoBehaviour
     public HexTile[] tilePrefabs;
     public List<HexTile> tiles;
     private Color tileColor;
-    private Vector3 tileScale;
+    private float tileScale;
 
     void Awake()
     {
@@ -96,16 +96,13 @@ public class HexGrid : MonoBehaviour
         int tileType = GetPerlinID(q, r);
 
         HexTile tile = Instantiate(tilePrefabs[tileType]);
-
-        tile.InitTile(q, r, tileColor, tileScale);
-        tile.transform.position = new Vector3(q * 1.51f, 0, Mathf.Sqrt(3) * (r + q / 2.0f));
+        tile.InitTile(q, r, tileColor, tileScale, transform);
 
         if (tile.traversable)
         {
             traversableAmount++;
         }
 
-        tile.transform.SetParent(transform);
         tiles.Add(tile);
     }
 
@@ -134,17 +131,17 @@ public class HexGrid : MonoBehaviour
     private int GetPerlinID(int q, int r)
     {
         float perlinElevation = GeneratePerlin(q, r, false);
-        tileScale = new Vector3(1f, perlinElevation * 10, 1f);
+        tileScale = perlinElevation * 10;
         if (q < -N || q > N || r < -N || r > N || q + r < -N || q + r > N)
         {
             tileColor = Color.Lerp(Color.blue, Color.white, perlinElevation / 2);
-            tileScale = new Vector3(1f, Mathf.Clamp(perlinElevation * 10, 1f, 2f), 1f);
+            tileScale = Mathf.Clamp(perlinElevation * 10, 1f, 2f);
             return 0; // Water tile
         }
         if (perlinElevation <= settings.perlinWaterLevel && perlinElevation >= 0.03f)
         {
             tileColor = Color.Lerp(Color.blue, Color.white, perlinElevation);
-            tileScale = new Vector3(1f, Mathf.Clamp(perlinElevation * 10, 1f, 2f), 1f);
+            tileScale = Mathf.Clamp(perlinElevation * 10, 1f, 2f);
             return 0;
         }
         else if (
