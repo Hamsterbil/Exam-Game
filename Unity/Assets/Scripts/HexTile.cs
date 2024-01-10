@@ -142,4 +142,9 @@ public class HexTile : MonoBehaviour
         }
         return tileNeighbors;
     }
+
+    public void ChangeCost(int multiplier, int costChange) 
+    {
+        cost = cost * multiplier + costChange;
+    }
 }
