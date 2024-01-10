@@ -48,11 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   q: 0
   r: 0
-  cost: 1
+  cost: 250
   typeName: Grass
   traversable: 1
   color: {r: 0, g: 1, b: 0, a: 1}
   originalColor: {r: 0, g: 0, b: 0, a: 0}
+  originalScale: 0
   neighbors: []
   owner: {fileID: 0}
 --- !u!65 &4125375161328151150

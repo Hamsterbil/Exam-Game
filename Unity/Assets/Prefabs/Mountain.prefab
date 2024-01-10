@@ -48,11 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   q: 0
   r: 0
-  cost: 0
+  cost: 1000
   typeName: Mountain
-  traversable: 0
+  traversable: 1
   color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   originalColor: {r: 0, g: 0, b: 0, a: 0}
+  originalScale: 0
   neighbors: []
   owner: {fileID: 0}
 --- !u!65 &-9096915944969514947

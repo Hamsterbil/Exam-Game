@@ -15,6 +15,8 @@ public abstract class GridPlayer : MonoBehaviour
     [HideInInspector]
     public Settings settings;
 
+    private int playerTileAmount;
+
     protected virtual void Start()
     {
         grid = GameObject.Find("HexGrid").GetComponent<HexGrid>();
@@ -111,10 +113,29 @@ public abstract class GridPlayer : MonoBehaviour
             neighbor.neighbors[index] = playerTile;
         }
 
-        // Debug.Log(playerTypeName + " bought " + playerTile.name);
+        if (this is Player currentPlayer)
+        {
+            if (AllowTileCostUpdate())
+            {
+                grid.UpdateTileCosts();
+            }
+        }
 
         playerTile.SetOwner(this, hexTile);
 
         Destroy(hexTile.gameObject);
+    }
+    
+    public bool AllowTileCostUpdate()
+    {
+        if (ownedTiles.Count % 20 == 0 && ownedTiles.Count > playerTileAmount)
+        {
+            playerTileAmount = ownedTiles.Count;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
