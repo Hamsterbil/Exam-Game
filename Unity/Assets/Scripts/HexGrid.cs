@@ -271,7 +271,7 @@ public class HexGrid : MonoBehaviour
     {
         foreach (HexTile tile in tiles)
         {
-            tile.ChangeCost(2, 250);
+            tile.ChangeCost(1, 250);
         }
     }
 }
