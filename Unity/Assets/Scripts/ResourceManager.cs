@@ -8,11 +8,14 @@ public class ResourceManager : MonoBehaviour
     public int startingPopulation;
     public int startingMilitary;
     public int startingHappiness;
-    public int happiness;
     public int maxHappiness; // Maximum happiness
     public int maxMilitary; // Maximum military units based on population
-    private int population;
-    public int military;
+    
+ 
+
+    public float cashMultiplier = 1.0f; // Default cash multiplier
+    public float populationMultiplier = 1.0f; // Default population multiplier
+    public float tileCostMultiplier = 1.0f; // Default tile cost multiplier
 
     public event Action<int> OnCashChanged; // Event to notify when cash changes
     public event Action<int> OnPopulationChanged; // Event to notify when population changes
@@ -25,8 +28,22 @@ public class ResourceManager : MonoBehaviour
         player.happiness = maxHappiness;
         player.military = startingMilitary;
         //CalculateMilitaryUnits();
-        happiness = maxHappiness; // Start with max happiness
-
+       
+    }
+public void AdjustGameParameters(float happiness)
+    {
+        if (happiness > 50) // Example threshold, adjust as needed
+        {
+            cashMultiplier = 0.8f; // Adjust cash generation for high happiness
+            populationMultiplier = 1.2f; // Increase population growth for high happiness
+            tileCostMultiplier = 0.9f; // Reduce tile costs for high happiness
+        }
+        else
+        {
+            cashMultiplier = 1.2f; // Increase cash generation for low happiness
+            populationMultiplier = 0.8f; // Decrease population growth for low happiness
+            tileCostMultiplier = 1.1f; // Increase tile costs for low happiness
+        }
     }
 
     void Update()
@@ -80,23 +97,17 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    //public void CalculateMilitaryUnits()
-    //{
-        // Calculate military units based on population
-        //military = Mathf.Min(GetPopulation() / 10, maxMilitary);
-
-    //}
-
+  
     public void AddMilitary(int amount)
     {
-        military += amount;
+        player.military += amount;
     }
 
     public void SubtractMilitary(int amount)
     {
-        if (military >= amount)
+        if (player.military >= amount)
         {
-            military -= amount;
+            player.military -= amount;
         }
         else
         {
@@ -107,7 +118,8 @@ public class ResourceManager : MonoBehaviour
 
     public void ModifyHappiness(int amount)
     {
-        happiness += amount;
-        happiness = Mathf.Clamp(happiness, 0, maxHappiness);
+        player.happiness += amount;
+        player.happiness = Mathf.Clamp(player.happiness, 0, maxHappiness);
     }
+
 }

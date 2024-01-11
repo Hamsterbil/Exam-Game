@@ -17,7 +17,7 @@ public class PopulationGeneration : MonoBehaviour
     {
         while (true)
         {
-            float populationMultiplier = 1.0f - (resourceManager.happiness / 100.0f);
+            float populationMultiplier = 1.0f - (resourceManager.player.happiness / 100.0f);
             int populationToGenerate = Mathf.RoundToInt(populationPerInterval * populationMultiplier);
             yield return new WaitForSeconds(populationGenerationInterval);
             resourceManager.AddPopulation(populationPerInterval);

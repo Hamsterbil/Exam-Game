@@ -10,14 +10,14 @@ public class CashGeneration : MonoBehaviour
     void Start()
     {
         StartCoroutine(GenerateCash());
-        int startingMoney = 1000;
+ 
     }
 
     private IEnumerator GenerateCash()
     {
         while (true)
         {
-            float cashMultiplier = 1.0f - (resourceManager.happiness / 100.0f);
+            float cashMultiplier = 1.0f - (resourceManager.player.happiness / 100.0f);
             int cashToGenerate = Mathf.RoundToInt(cashPerInterval * cashMultiplier);
             yield return new WaitForSeconds(cashGenerationInterval);
             resourceManager.AddCash(cashPerInterval);

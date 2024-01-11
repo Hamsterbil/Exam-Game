@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   q: 0
   r: 0
-  cost: 3
+  cost: 750
   typeName: Snow
   traversable: 1
   color: {r: 1, g: 1, b: 1, a: 1}

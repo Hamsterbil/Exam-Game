@@ -17,7 +17,7 @@ public class TextManager : MonoBehaviour
     {
         moneyText.text = "" + player.money;
         populationText.text = "" + player.population;
-        happinessText.text = "" + player.happiness;
+        happinessText.text = "" + player.happiness + "%";
         militaryText.text = "" + player.military;
     }
 }

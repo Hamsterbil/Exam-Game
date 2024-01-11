@@ -267,4 +267,11 @@ public class HexGrid : MonoBehaviour
             }
         }
     }
+    public void UpdateTileCosts()
+    {
+        foreach (HexTile tile in tiles)
+        {
+            tile.ChangeCost(2, 250);
+        }
+    }
 }

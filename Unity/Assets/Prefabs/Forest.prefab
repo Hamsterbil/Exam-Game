@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   q: 0
   r: 0
-  cost: 2
+  cost: 500
   typeName: Forest
   traversable: 1
   color: {r: 0, g: 0.5, b: 0, a: 1}
