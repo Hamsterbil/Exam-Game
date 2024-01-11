@@ -1129,6 +1129,7 @@ MonoBehaviour:
   - {fileID: -1944359363860365657, guid: 666c4e940ce96a642928c82fa0979eea, type: 3}
   - {fileID: 3705312708081439422, guid: 446114aba4fcc074bb0314cb2041656b, type: 3}
   tiles: []
+  waterTiles: []
 --- !u!4 &1117048374
 Transform:
   m_ObjectHideFlags: 0

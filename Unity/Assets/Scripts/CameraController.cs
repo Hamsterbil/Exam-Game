@@ -3,8 +3,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public float moveSpeed; // Adjust the movement speed as needed
-    private bool isDragging = false;
-
+    
+    // private bool isDragging = false;
     // private Vector3 dragStartPosition;
 
     void Update()
@@ -88,12 +88,12 @@ public class CameraController : MonoBehaviour
             moveSpeed = 25;
         }
         // Zoom in and out with the mouse wheel
-            float scroll = Mathf.Clamp(
-                transform.position.y - Input.GetAxis("Mouse ScrollWheel") * 8 * 100f * Time.deltaTime,
-                10f,
-                60f
-            );
-            transform.position = new Vector3(transform.position.x, scroll, transform.position.z);
+        float scroll = Mathf.Clamp(
+            transform.position.y - Input.GetAxis("Mouse ScrollWheel") * 8 * 100f * Time.deltaTime,
+            10f,
+            60f
+        );
+        transform.position = new Vector3(transform.position.x, scroll, transform.position.z);
 
         //Movespeed lowers by percent of zoom
         // moveSpeed = moveSpeed * (60 / scroll);

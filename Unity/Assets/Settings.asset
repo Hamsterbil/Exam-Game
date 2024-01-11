@@ -18,7 +18,7 @@ MonoBehaviour:
   mapSizeFromCenter: 40
   mapExtraLayers: 5
   amountOfEnemies: 4
-  enemyTurnTime: 1
+  enemyTurnTime: 0.01
   perlinScale: 8
   perlinScale1: 100
   perlinScale2: 100
@@ -27,4 +27,4 @@ MonoBehaviour:
   perlinLandLevel: 0.15
   perlinOffsetX: 100
   perlinOffsetZ: 100
-  randomizeOffset: 0
+  randomizeOffset: 1

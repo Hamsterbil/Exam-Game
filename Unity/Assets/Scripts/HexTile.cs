@@ -13,6 +13,7 @@ public class HexTile : MonoBehaviour
     public float originalScale;
     public List<HexTile> neighbors;
     public GridPlayer owner;
+    public MeshCollider meshCollider;
 
     public void InitTile(int Q, int R, Color color, float scale, Transform parentObject)
     {
@@ -24,11 +25,8 @@ public class HexTile : MonoBehaviour
         changeScale(scale);
         originalScale = scale;
 
-        transform.position = new Vector3(
-            q * 1.5f,
-            0,
-            r * Mathf.Sqrt(3) + q * Mathf.Sqrt(3) / 2
-        );
+        transform.position = new Vector3(q * 1.5f, 0, r * Mathf.Sqrt(3) + q * Mathf.Sqrt(3) / 2);
+        transform.SetParent(parentObject);
     }
 
     void Start()
@@ -106,10 +104,12 @@ public class HexTile : MonoBehaviour
 
     public void changeScale(float scale)
     {
-        transform.GetChild(0).localScale = new Vector3(1, 1, scale);
+        transform.GetChild(0).localScale = new Vector3(1, scale, 1);
+        // Change the position of the tile's collider
+        
         for (int i = 1; i < transform.childCount; i++)
         {
-            transform.GetChild(i).localPosition = new Vector3(0, scale + 1, 0);
+            transform.GetChild(i).localPosition = new Vector3(0, scale + 0.5f, 0);
         }
     }
 
@@ -119,7 +119,7 @@ public class HexTile : MonoBehaviour
     }
 
     private List<HexTile> GetNeighbors(List<HexTile> allTiles, int distance)
-    {        
+    {
         List<HexTile> tileNeighbors = new List<HexTile>();
         for (int q = -distance; q <= distance; q++)
         {

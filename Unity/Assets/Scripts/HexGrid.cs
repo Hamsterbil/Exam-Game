@@ -5,7 +5,6 @@ public class HexGrid : MonoBehaviour
 {
     int amountOfEnemies;
     int extraLayers;
-    int traversableAmount;
     int N;
     float waterLevel;
     float landLevel;
@@ -18,6 +17,7 @@ public class HexGrid : MonoBehaviour
 
     public HexTile[] tilePrefabs;
     public List<HexTile> tiles;
+    public List<HexTile> waterTiles;
     private Color tileColor;
     private float tileScale;
 
@@ -42,6 +42,7 @@ public class HexGrid : MonoBehaviour
         }
 
         tiles = new List<HexTile>();
+        waterTiles = new List<HexTile>();
 
         CreateMap();
         AddEnemies(amountOfEnemies);
@@ -49,31 +50,28 @@ public class HexGrid : MonoBehaviour
 
     void Update()
     {
-        foreach (HexTile tile in tiles)
+        foreach (HexTile tile in waterTiles)
         {
-            if (tile.typeName == "Water")
-            {
-                float yOffset = Mathf.Clamp(
-                    (
-                        Mathf.Sin(Time.time * settings.waveSpeed + tile.q * settings.waveAmount)
-                        + Mathf.Cos(
-                            0.5f * Time.time * settings.waveSpeed + tile.q * settings.waveAmount
-                        )
-                        + Mathf.Sin(
-                            0.25f * Time.time * settings.waveSpeed
-                                + tile.q * settings.waveAmount * 3f
-                                + tile.r * settings.waveAmount
-                        )
-                    ) * settings.waveHeight,
-                    -0.5f,
-                    0f
-                );
-                tile.transform.position = new Vector3(
-                    tile.transform.position.x,
-                    Mathf.Clamp(tile.transform.position.y + yOffset, 0.1f, 1),
-                    tile.transform.position.z
-                );
-            }
+            float yOffset = Mathf.Clamp(
+                (
+                    Mathf.Sin(Time.time * settings.waveSpeed + tile.q * settings.waveAmount)
+                    + Mathf.Cos(
+                        0.5f * Time.time * settings.waveSpeed + tile.q * settings.waveAmount
+                    )
+                    + Mathf.Sin(
+                        0.25f * Time.time * settings.waveSpeed
+                            + tile.q * settings.waveAmount * 3f
+                            + tile.r * settings.waveAmount
+                    )
+                ) * settings.waveHeight,
+                -0.5f,
+                0f
+            );
+            tile.transform.position = new Vector3(
+                tile.transform.position.x,
+                Mathf.Clamp(tile.transform.position.y + yOffset, 0.1f, 1),
+                tile.transform.position.z
+            );
         }
     }
 
@@ -98,29 +96,17 @@ public class HexGrid : MonoBehaviour
         HexTile tile = Instantiate(tilePrefabs[tileType]);
         tile.InitTile(q, r, tileColor, tileScale, transform);
 
-        if (tile.traversable)
-        {
-            traversableAmount++;
-        }
-
         tiles.Add(tile);
+        if (tileType == 0)
+        {
+            waterTiles.Add(tile);
+        }
     }
 
     private void AddEnemies(int amount)
     {
         for (int i = 0; i < amount; i++)
         {
-            //If more enemies than traversable tiles, stop
-            if (i >= traversableAmount)
-            {
-                Debug.LogError("Too many enemies for this map size!");
-                Debug.LogError(
-                    "The maximum amount of enemies for this map size is " + traversableAmount
-                );
-                //Stop the game
-                Application.Quit();
-                return;
-            }
             GameObject EnemyPlayer = new GameObject("Enemy " + i + " ");
             Enemy enemy = EnemyPlayer.AddComponent<Enemy>();
             enemy.color = new Color(Random.value, Random.value, Random.value); // Generates random RGB color
