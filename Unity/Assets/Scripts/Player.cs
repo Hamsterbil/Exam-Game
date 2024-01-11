@@ -9,10 +9,10 @@ public class Player : GridPlayer
     public int military;
     public int happiness;
 
-    public CameraController playerCamera;
+    public CameraController playerCamera;    
     public ResourceManager resourceManager;
     public LayerMask hexTileLayerMask;
-
+   
     public override void StartPlayer()
     {
         playerCamera.FindPlayer(this);
@@ -29,11 +29,12 @@ public class Player : GridPlayer
             {
                 HexTile hexTile = hit.collider.gameObject.GetComponentInParent<HexTile>();
                 if (hexTile != null)
-                {
-                    CheckAndAddTile(hexTile);
-                }
+
+            {
+                CheckAndAddTile(hexTile);
             }
         }
+}
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
 
         HighlightNeighbors();
