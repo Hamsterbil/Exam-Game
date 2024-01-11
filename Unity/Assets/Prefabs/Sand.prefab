@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7998487673427476991}
   - component: {fileID: 383938362210592251}
+  - component: {fileID: -3808719778940838826}
   m_Layer: 3
   m_Name: Sand
   m_TagString: Selectable
@@ -55,7 +56,21 @@ MonoBehaviour:
   originalScale: 0
   neighbors: []
   owner: {fileID: 0}
-  meshCollider: {fileID: 8907398795096124775}
+  collider: {fileID: -3808719778940838826}
+--- !u!64 &-3808719778940838826
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7859294575861825725}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: 0cb50812e8d2bf04e92e18665e75bed9, type: 3}
 --- !u!1001 &4643123292871177734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -126,22 +141,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0cb50812e8d2bf04e92e18665e75bed9, type: 3}
   m_PrefabInstance: {fileID: 4643123292871177734}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5525593319731661655 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0cb50812e8d2bf04e92e18665e75bed9, type: 3}
-  m_PrefabInstance: {fileID: 4643123292871177734}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &8907398795096124775
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5525593319731661655}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2432090755550338912, guid: 0cb50812e8d2bf04e92e18665e75bed9, type: 3}

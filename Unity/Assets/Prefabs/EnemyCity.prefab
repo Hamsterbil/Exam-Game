@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3189701000029066693}
   - component: {fileID: 8129890943631657260}
-  - component: {fileID: 488395797014792184}
+  - component: {fileID: -7559730937254858784}
   m_Layer: 3
   m_Name: EnemyCity
   m_TagString: Selectable
@@ -57,8 +57,8 @@ MonoBehaviour:
   originalScale: 0
   neighbors: []
   owner: {fileID: 0}
-  meshCollider: {fileID: 488395797014792184}
---- !u!64 &488395797014792184
+  collider: {fileID: -7559730937254858784}
+--- !u!64 &-7559730937254858784
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,7 +99,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3752049171430196351}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.13, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
