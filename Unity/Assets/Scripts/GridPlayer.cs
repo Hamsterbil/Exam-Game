@@ -54,49 +54,52 @@ public abstract class GridPlayer : MonoBehaviour
         {
             AddTile(hexTile);
         }
+        else
+        {
+            Debug.LogWarning("Can't buy " + hexTile.name);
+        }
     }
 
     protected bool CanAddTile(HexTile hexTile)
     {
-        foreach (HexTile ownedTile in ownedTiles)
+        //kdkd
+        if (hexTile.EligibleForPurchase(this))
         {
-            foreach (HexTile neighbor in ownedTile.neighbors)
+            if (hexTile.owner != null)
             {
-                if (hexTile.EligibleForPurchase(this, neighbor))
+                if (this is Player player)
                 {
-                    return true;
+                    if (player.military > hexTile.cost)
+                    {
+                        player.resourceManager.SubtractMilitary(hexTile.cost);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                hexTile.owner.ownedTiles.Remove(hexTile);
+            }
+            else if (this is Player player)
+            {
+                if (player.money > hexTile.cost)
+                {
+                    player.resourceManager.SubtractCash(hexTile.cost);
+                }
+                else
+                {
+                    return false;
                 }
             }
+            return true;
         }
         return false;
     }
 
     protected void AddTile(HexTile hexTile)
     {
-        // Debug.Log(hexTile.name + " is traversable and a neighbor of " + ownedTile.name);
-        if (hexTile.owner != null)
-        {
-            if (hexTile.owner is Player)
-            {
-                Player player = (Player)hexTile.owner;
-                player.RemoveHighlights(hexTile);
-            }
-            if (this is Player currentPlayer)
-            {
-                currentPlayer.resourceManager.SubtractMilitary(hexTile.cost);
-            }
-
-            hexTile.owner.ownedTiles.Remove(hexTile);
-        }
-        else
-        {
-            if (this is Player currentPlayer)
-            {
-                currentPlayer.resourceManager.SubtractCash(hexTile.cost);
-            }
-        }
         Debug.Log(playerTypeName + " bought " + hexTile.name);
-        
+
         HexTile playerTile = Instantiate(ownedTilePrefab);
         playerTile.InitTile(hexTile.q, hexTile.r, color, hexTile.originalScale, transform); // Pass the original values to the new tile
 
@@ -129,7 +132,7 @@ public abstract class GridPlayer : MonoBehaviour
         playerTile.SetOwner(this, hexTile);
         Destroy(hexTile.gameObject);
     }
-    
+
     public bool AllowTileCostUpdate()
     {
         if (ownedTiles.Count % 20 == 0 && ownedTiles.Count > playerTileAmount)

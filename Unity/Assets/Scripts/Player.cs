@@ -9,7 +9,7 @@ public class Player : GridPlayer
     public int military;
     public int happiness;
 
-    public CameraController playerCamera;    
+    public CameraController playerCamera;
     public ResourceManager resourceManager;
     public LayerMask hexTileLayerMask;
 
@@ -27,8 +27,11 @@ public class Player : GridPlayer
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, hexTileLayerMask))
             {
-                HexTile hexTile = hit.collider.gameObject.GetComponent<HexTile>();
-                CheckAndAddTile(hexTile);
+                HexTile hexTile = hit.collider.gameObject.GetComponentInParent<HexTile>();
+                if (hexTile != null)
+                {
+                    CheckAndAddTile(hexTile);
+                }
             }
         }
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
@@ -57,5 +60,4 @@ public class Player : GridPlayer
             neighbor.color = neighbor.originalColor;
         }
     }
-    
 }

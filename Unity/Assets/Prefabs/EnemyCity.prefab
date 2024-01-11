@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3189701000029066693}
   - component: {fileID: 8129890943631657260}
-  - component: {fileID: 8742225884399954974}
+  - component: {fileID: 488395797014792184}
   m_Layer: 3
   m_Name: EnemyCity
   m_TagString: Selectable
@@ -57,8 +57,8 @@ MonoBehaviour:
   originalScale: 0
   neighbors: []
   owner: {fileID: 0}
-  meshCollider: {fileID: 8742225884399954974}
---- !u!64 &8742225884399954974
+  meshCollider: {fileID: 488395797014792184}
+--- !u!64 &488395797014792184
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,7 +69,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 0cb50812e8d2bf04e92e18665e75bed9, type: 3}
 --- !u!1 &3752049171430196351

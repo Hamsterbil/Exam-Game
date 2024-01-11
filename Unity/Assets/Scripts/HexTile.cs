@@ -98,7 +98,7 @@ public class HexTile : MonoBehaviour
         if (traversable)
         {
             // ... code to handle mouse down ...
-            Debug.Log("Clicked on " + name);
+            Debug.LogWarning("Clicked on " + name);
         }
     }
 
@@ -106,16 +106,23 @@ public class HexTile : MonoBehaviour
     {
         transform.GetChild(0).localScale = new Vector3(1, scale, 1);
         // Change the position of the tile's collider
-        
+
         for (int i = 1; i < transform.childCount; i++)
         {
             transform.GetChild(i).localPosition = new Vector3(0, scale + 0.5f, 0);
         }
     }
 
-    public bool EligibleForPurchase(GridPlayer player, HexTile neighbor)
+    public bool EligibleForPurchase(GridPlayer player)
     {
-        return this != null && traversable && this == neighbor && owner != player;
+        foreach (HexTile playerTiles in player.ownedTiles)
+        {
+            if (playerTiles.neighbors.Contains(this))
+            {
+                return this != null && traversable && owner != player;
+            }
+        }
+        return false;
     }
 
     private List<HexTile> GetNeighbors(List<HexTile> allTiles, int distance)
@@ -143,7 +150,7 @@ public class HexTile : MonoBehaviour
         return tileNeighbors;
     }
 
-    public void ChangeCost(int multiplier, int costChange) 
+    public void ChangeCost(int multiplier, int costChange)
     {
         cost = cost * multiplier + costChange;
     }

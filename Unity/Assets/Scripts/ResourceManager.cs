@@ -11,6 +11,10 @@ public class ResourceManager : MonoBehaviour
     public int maxHappiness; // Maximum happiness
     public int maxMilitary; // Maximum military units based on population
     
+    public int militaryUnits; // Number of military units
+    public int happiness; // Happiness value
+    public int population; // Population value
+    public int money; // Cash value
  
 
     public float cashMultiplier = 1.0f; // Default cash multiplier
@@ -27,8 +31,7 @@ public class ResourceManager : MonoBehaviour
         player.population = startingPopulation;
         player.happiness = maxHappiness;
         player.military = startingMilitary;
-        //CalculateMilitaryUnits();
-       
+        //CalculateMilitaryUnits();       
     }
 public void AdjustGameParameters(float happiness)
     {
@@ -59,19 +62,13 @@ public void AdjustGameParameters(float happiness)
     public void AddCash(int amount)
     {
         player.money += amount;
+        money = player.money;
     }
 
     public void SubtractCash(int amount)
     {
-        if (player.money >= amount)
-        {
-            player.money -= amount;
-        }
-        else
-        {
-            // Handle insufficient funds
-            Debug.LogWarning("Insufficient cash!");
-        }
+        player.money -= amount;
+        money = player.money;
     }
 
     public int GetPopulation()
@@ -82,44 +79,32 @@ public void AdjustGameParameters(float happiness)
     public void AddPopulation(int amount)
     {
         player.population += amount;
+        population = player.population;
     }
 
     public void SubtractPopulation(int amount)
     {
-        if (player.population >= amount)
-        {
-            player.population -= amount;
-        }
-        else
-        {
-            // Handle population-related errors, if necessary
-            Debug.LogWarning("Insufficient population!");
-        }
+        player.population -= amount;
+        population = player.population;
     }
-
   
     public void AddMilitary(int amount)
     {
         player.military += amount;
+        militaryUnits = player.military;
     }
 
     public void SubtractMilitary(int amount)
     {
-        if (player.military >= amount)
-        {
-            player.military -= amount;
-        }
-        else
-        {
-            // Handle military-related errors, if necessary
-            Debug.LogWarning("Insufficient military units!");
-        }
+        player.military -= amount;
+        militaryUnits = player.military;
     }
 
     public void ModifyHappiness(int amount)
     {
         player.happiness += amount;
         player.happiness = Mathf.Clamp(player.happiness, 0, maxHappiness);
+        happiness = player.happiness;
     }
 
 }
