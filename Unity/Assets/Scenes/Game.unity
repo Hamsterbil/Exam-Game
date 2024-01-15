@@ -1865,12 +1865,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1034780179}
-  startingMoney: 0
-  startingPopulation: 0
-  startingMilitary: 0
-  startingHappiness: 0
-  maxHappiness: 0
+  startingCash: 10000
+  startingPopulation: 10000
+  startingMilitary: 1000
+  startingHappiness: 100
+  maxHappiness: 100
   maxMilitary: 0
+  militaryUnits: 0
+  happiness: 0
+  population: 0
+  money: 0
   cashMultiplier: 1
   populationMultiplier: 1
   tileCostMultiplier: 1
@@ -2480,8 +2484,9 @@ GameObject:
   - component: {fileID: 1595157074}
   - component: {fileID: 1595157073}
   - component: {fileID: 1595157076}
+  - component: {fileID: 1595157077}
   m_Layer: 0
-  m_Name: ResourceManager
+  m_Name: ResourceGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2532,6 +2537,22 @@ MonoBehaviour:
   resourceManager: {fileID: 1034780181}
   populationPerInterval: 100
   populationGenerationInterval: 1
+--- !u!114 &1595157077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595157072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe51f8424a45c044b7dea8c0b369738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceManager: {fileID: 1034780181}
+  MilitaryPerInterval: 100
+  MilitaryGenerationInterval: 1
+  bonusMilitaryMultiplier: 1
 --- !u!1 &1919034866
 GameObject:
   m_ObjectHideFlags: 0
