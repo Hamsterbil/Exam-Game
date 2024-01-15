@@ -4,7 +4,7 @@ using System;
 public class ResourceManager : MonoBehaviour
 {
     public Player player;
-    public UpgradeManager upgradeManager;
+    
     public int startingCash;
     public int startingPopulation;
     public int startingMilitary;
@@ -32,7 +32,7 @@ public class ResourceManager : MonoBehaviour
         player.population = startingPopulation;
         player.happiness = maxHappiness;
         player.military = startingMilitary;
-        upgradeManager = GetComponent<UpgradeManager>();
+       
      
     }
 public void AdjustGameParameters(float happiness)
@@ -108,26 +108,4 @@ public void AdjustGameParameters(float happiness)
         player.happiness = Mathf.Clamp(player.happiness, 0, maxHappiness);
         happiness = player.happiness;
     }
-
-    private void SomeGameLogic()
-    {
-        // Example: Calculate cash based on the current cash multiplier after upgrades
-        float cashMultiplier = upgradeManager.GetCashMultiplier();
-        float modifiedCash = startingCash * cashMultiplier;
-        // Generate cash based on modifiedCash value
-        // ...
-
-        // Example: Calculate population based on the current population multiplier after upgrades
-        float populationMultiplier = upgradeManager.GetPopulationMultiplier();
-        float modifiedPopulation = startingPopulation * populationMultiplier;
-        // Increase population based on modifiedPopulation value
-        // ...
-
-        // Example: Calculate military units based on the current military multiplier after upgrades
-        float militaryMultiplier = upgradeManager.GetMilitaryMultiplier();
-        float modifiedMilitaryUnits = startingMilitary * militaryMultiplier;
-        // Generate military units based on modifiedMilitaryUnits value
-        // ...
-    }
-
 }
