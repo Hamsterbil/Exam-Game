@@ -3,42 +3,30 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour 
 {
-    public float cashMultiplierUpgrade = 0.1f; // Increase in cash multiplier per upgrade
-    public float populationMultiplierUpgrade = 0.1f; // Increase in population multiplier per upgrade
-    public float militaryMultiplierUpgrade = 0.1f; // Increase in military multiplier per upgrade
+    public MilitaryGeneration militaryGeneration;
+    public PopulationGeneration populationGeneration;
+    public CashGeneration cashGeneration;
+    public int cashUpgrades = 1;
+    public int populationUpgrades = 1;
+    public int militaryUpgrades = 1;
 
-    private int cashUpgrades = 0;
-    private int populationUpgrades = 0;
-    private int militaryUpgrades = 0;
-
-    public void ApplyCashUpgrade()
+    public void ApplyCashUpgrade(int cashMultiplierUpgrade)
     {
         cashUpgrades++;
+        cashGeneration.bonusCashMultiplier = (cashMultiplierUpgrade * cashUpgrades);
     }
 
-    public void ApplyPopulationUpgrade()
+    public void ApplyPopulationUpgrade(int populationMultiplierUpgrade)
     {
         populationUpgrades++;
+        populationGeneration.bonusPopulationMultiplier = (populationMultiplierUpgrade * populationUpgrades);
+
     }
 
-    public void ApplyMilitaryUpgrade()
+    public void ApplyMilitaryUpgrade(int militaryMultiplierUpgrade)
     {
         militaryUpgrades++;
-    }
-
-    // Getters for the current multipliers after applying upgrades
-    public float GetCashMultiplier()
-    {
-        return 1.0f + (cashUpgrades * cashMultiplierUpgrade);
-    }
-
-    public float GetPopulationMultiplier()
-    {
-        return 1.0f + (populationUpgrades * populationMultiplierUpgrade);
-    }
-
-    public float GetMilitaryMultiplier()
-    {
-        return 1.0f + (militaryUpgrades * militaryMultiplierUpgrade);
+        militaryGeneration.bonusMilitaryMultiplier = (militaryMultiplierUpgrade * militaryUpgrades);
+        
     }
 }

@@ -6,6 +6,7 @@ public class CashGeneration : MonoBehaviour
     public ResourceManager resourceManager;
     public int cashPerInterval; // Adjust this based on your game's balance.
     public float cashGenerationInterval; // Adjust the interval as needed.
+    public float bonusCashMultiplier = 1.0f; // Default cash multiplier
 
     void Start()
     {
@@ -17,10 +18,10 @@ public class CashGeneration : MonoBehaviour
     {
         while (true)
         {
-            float cashMultiplier = 1.0f - (resourceManager.player.happiness / 100.0f);
+            float cashMultiplier = 2.0f - (resourceManager.player.happiness / 100.0f) + bonusCashMultiplier;
             int cashToGenerate = Mathf.RoundToInt(cashPerInterval * cashMultiplier);
             yield return new WaitForSeconds(cashGenerationInterval);
-            resourceManager.AddCash(cashPerInterval);
+            resourceManager.AddCash(cashToGenerate);
         }
     }
 

@@ -6,6 +6,7 @@ public class MilitaryGeneration : MonoBehaviour
    public ResourceManager resourceManager;
     public float MilitaryPerInterval; // Adjust this based on your game's balance.
     public float MilitaryGenerationInterval; // Adjust the interval as needed.
+    public float bonusMilitaryMultiplier = 1.0f; // Default military multiplier
     void Start()
     {
         StartCoroutine(GenerateMilitary());
@@ -15,7 +16,7 @@ public class MilitaryGeneration : MonoBehaviour
     {
         while (true)
         {
-            float MilitaryMultiplier = 2.0f - (resourceManager.player.happiness / 100.0f);
+            float MilitaryMultiplier = 2.0f - (resourceManager.player.happiness / 100.0f) + bonusMilitaryMultiplier;
             int MilitaryToGenerate = Mathf.RoundToInt(MilitaryPerInterval * MilitaryMultiplier);
             yield return new WaitForSeconds(MilitaryGenerationInterval);
             resourceManager.AddMilitary(MilitaryToGenerate);
