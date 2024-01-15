@@ -15,7 +15,7 @@ public class TextManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moneyText.text = "" + player.money;
+        cashText.text = "" + player.cash;
         populationText.text = "" + player.population;
         happinessText.text = "" + player.happiness + "%";
         militaryText.text = "" + player.military;

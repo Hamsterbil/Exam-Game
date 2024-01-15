@@ -25,7 +25,7 @@ public class ResourceManager : MonoBehaviour
     public event Action<int> OnHappinessChanged; // Event to notify when happiness changes
     void Start()
     {
-        player.money = startingCash;
+        player.cash = startingCash;
         player.population = startingPopulation;
         player.happiness = maxHappiness;
         player.military = startingMilitary;
@@ -74,7 +74,7 @@ public class ResourceManager : MonoBehaviour
 
     public int GetCash()
     {
-        return player.money;
+        return player.cash;
     }
 
     public void AddCash(int amount)

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour 
 {
-    public MilitaryGeneration militaryGeneration;
     public ResourceManager resourceManager;
     public int cashUpgrades = 1;
     public int populationUpgrades = 1;
