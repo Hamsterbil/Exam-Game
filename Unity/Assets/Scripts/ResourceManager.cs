@@ -1,6 +1,6 @@
 using UnityEngine;
 using System;
-
+using System.Collections;
 public class ResourceManager : MonoBehaviour
 {
     public Player player;
@@ -11,17 +11,14 @@ public class ResourceManager : MonoBehaviour
     public int startingHappiness;
     public int maxHappiness; // Maximum happiness
     public int maxMilitary; // Maximum military units based on population
+
+    public float cashGenerationMultiplier; // Multiplier for cash generation
+    public float populationGenerationMultiplier; // Multiplier for population generation
+    public float militaryGenerationMultiplier; // Multiplier for military generation
+
+    public int generatePerInterval; // Amount of resources to generate per interval
+    public int generationInterval; // Interval to generate resources
     
-    public int militaryUnits; // Number of military units
-    public int happiness; // Happiness value
-    public int population; // Population value
-    public int money; // Cash value
- 
-
-    public float cashMultiplier = 1.0f; // Default cash multiplier
-    public float populationMultiplier = 1.0f; // Default population multiplier
-    public float tileCostMultiplier = 1.0f; // Default tile cost multiplier
-
     public event Action<int> OnCashChanged; // Event to notify when cash changes
     public event Action<int> OnPopulationChanged; // Event to notify when population changes
     public event Action<int> OnMilitaryUnitsChanged; // Event to notify when military units change
@@ -32,25 +29,44 @@ public class ResourceManager : MonoBehaviour
         player.population = startingPopulation;
         player.happiness = maxHappiness;
         player.military = startingMilitary;
-       
-     
+        StartCoroutine(GenerateCash());
+        StartCoroutine(GeneratePopulation());
+        StartCoroutine(GenerateMilitary());
     }
-public void AdjustGameParameters(float happiness)
+
+    public IEnumerator GenerateCash()
     {
-        if (happiness > 50) // Example threshold, adjust as needed
+        while (true)
         {
-            cashMultiplier = 0.8f; // Adjust cash generation for high happiness
-            populationMultiplier = 1.2f; // Increase population growth for high happiness
-            tileCostMultiplier = 0.9f; // Reduce tile costs for high happiness
-        }
-        else
-        {
-            cashMultiplier = 1.2f; // Increase cash generation for low happiness
-            populationMultiplier = 0.8f; // Decrease population growth for low happiness
-            tileCostMultiplier = 1.1f; // Increase tile costs for low happiness
+            float cashMultiplier = 1.0f - (player.happiness / 100.0f) + cashGenerationMultiplier;
+            int cashToGenerate = Mathf.RoundToInt(generatePerInterval * cashMultiplier);
+            yield return new WaitForSeconds(generationInterval);
+            AddCash(cashToGenerate);
         }
     }
 
+    public IEnumerator GeneratePopulation()
+    {
+        while (true)
+        {
+            float populationMultiplier = 1.0f - (player.happiness / 100.0f) + populationGenerationMultiplier;
+            int populationToGenerate = Mathf.RoundToInt(generatePerInterval * populationMultiplier);
+            yield return new WaitForSeconds(generationInterval);
+            AddPopulation(populationToGenerate);
+        }
+    }
+
+    public IEnumerator GenerateMilitary()
+    {
+        while (true)
+        {
+            float militaryMultiplier = 2.0f - (player.happiness / 100.0f) + militaryGenerationMultiplier;
+            int militaryToGenerate = Mathf.RoundToInt(generatePerInterval * militaryMultiplier);
+            yield return new WaitForSeconds(generationInterval);
+            AddMilitary(militaryToGenerate);
+        }
+    }
+    
     void Update()
     {
      
@@ -63,14 +79,13 @@ public void AdjustGameParameters(float happiness)
 
     public void AddCash(int amount)
     {
-        player.money += amount;
-        money = player.money;
+        player.cash += amount;
+
     }
 
     public void SubtractCash(int amount)
     {
-        player.money -= amount;
-        money = player.money;
+        player.cash -= amount;
     }
 
     public int GetPopulation()
@@ -81,31 +96,27 @@ public void AdjustGameParameters(float happiness)
     public void AddPopulation(int amount)
     {
         player.population += amount;
-        population = player.population;
+
     }
 
     public void SubtractPopulation(int amount)
     {
         player.population -= amount;
-        population = player.population;
     }
   
     public void AddMilitary(int amount)
     {
         player.military += amount;
-        militaryUnits = player.military;
     }
 
     public void SubtractMilitary(int amount)
     {
         player.military -= amount;
-        militaryUnits = player.military;
     }
 
     public void ModifyHappiness(int amount)
     {
         player.happiness += amount;
         player.happiness = Mathf.Clamp(player.happiness, 0, maxHappiness);
-        happiness = player.happiness;
     }
 }

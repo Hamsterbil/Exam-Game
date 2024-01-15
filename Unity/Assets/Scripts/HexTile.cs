@@ -103,17 +103,17 @@ public class HexTile : MonoBehaviour
     }
 
     public void changeScale(float scale)
-    {
-        collider.transform.localScale = new Vector3(1, scale, 1);
+    {        
+        // Change the scale of the tile
+        transform.localScale = new Vector3(1, scale, 1);
 
         // Change the position of the tile's collider
         for (int i = 1; i < transform.childCount; i++)
         {
             // Reset the local scale of child objects
             transform.GetChild(i).localScale = new Vector3(1, 1 / scale, 1);
-
-            // Adjust the local position of child objects
-            transform.GetChild(i).position = new Vector3(0, 0.5f + scale, 0);
+            // Change the position of the collider
+            transform.GetChild(i).localPosition = new Vector3(0, 1 + 0.5f / scale, 0);
         }
     }
 
