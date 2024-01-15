@@ -38,11 +38,6 @@ public abstract class GridPlayer : MonoBehaviour
     protected virtual void Update() // Common player logic here
     {
         UpdatePlayer();
-        if (ownedTiles.Count == 0)
-        {
-            Debug.Log(playerTypeName + " has lost!");
-            Destroy(gameObject);
-        }
     }
 
     public abstract void StartPlayer();

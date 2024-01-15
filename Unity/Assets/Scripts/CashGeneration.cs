@@ -18,10 +18,10 @@ public class CashGeneration : MonoBehaviour
     {
         while (true)
         {
-            float cashMultiplier = 1.0f - (resourceManager.player.happiness / 100.0f) + bonusCashMultiplier;
+            float cashMultiplier = 2.0f - (resourceManager.player.happiness / 100.0f) + bonusCashMultiplier;
             int cashToGenerate = Mathf.RoundToInt(cashPerInterval * cashMultiplier);
             yield return new WaitForSeconds(cashGenerationInterval);
-            resourceManager.AddCash(cashPerInterval);
+            resourceManager.AddCash(cashToGenerate);
         }
     }
 

@@ -6,9 +6,9 @@ public class UpgradeManager : MonoBehaviour
     public MilitaryGeneration militaryGeneration;
     public PopulationGeneration populationGeneration;
     public CashGeneration cashGeneration;
-    private int cashUpgrades = 1;
-    private int populationUpgrades = 1;
-    private int militaryUpgrades = 1;
+    public int cashUpgrades = 1;
+    public int populationUpgrades = 1;
+    public int militaryUpgrades = 1;
 
     public void ApplyCashUpgrade(int cashMultiplierUpgrade)
     {
