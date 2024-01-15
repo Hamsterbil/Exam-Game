@@ -14,6 +14,7 @@ public class UpgradeManager : MonoBehaviour
     {
         cashUpgrades++;
         cashGeneration.bonusCashMultiplier = (cashMultiplierUpgrade * cashUpgrades);
+        
     }
 
     public void ApplyPopulationUpgrade(int populationMultiplierUpgrade)
