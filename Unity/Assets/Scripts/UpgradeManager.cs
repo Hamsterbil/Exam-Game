@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour 
 {
-    public float cashMultiplierUpgrade = 0.1f; // Increase in cash multiplier per upgrade
-    public float populationMultiplierUpgrade = 0.1f; // Increase in population multiplier per upgrade
-    public float militaryMultiplierUpgrade = 0.1f; // Increase in military multiplier per upgrade
+    public float cashMultiplierUpgrade = 5f; // Increase in cash multiplier per upgrade
+    public float populationMultiplierUpgrade = 5f; // Increase in population multiplier per upgrade
+    public float militaryMultiplierUpgrade = 5f; // Increase in military multiplier per upgrade
 
-    private int cashUpgrades = 0;
-    private int populationUpgrades = 0;
-    private int militaryUpgrades = 0;
+    private int cashUpgrades = 100;
+    private int populationUpgrades = 100;
+    private int militaryUpgrades = 100;
 
     public void ApplyCashUpgrade()
     {
