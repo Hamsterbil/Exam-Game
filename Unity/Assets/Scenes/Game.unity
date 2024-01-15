@@ -1865,12 +1865,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1034780179}
-  startingMoney: 0
+  upgradeManager: {fileID: 0}
+  startingCash: 0
   startingPopulation: 0
   startingMilitary: 0
   startingHappiness: 0
   maxHappiness: 0
   maxMilitary: 0
+  militaryUnits: 0
+  happiness: 0
+  population: 0
+  money: 0
   cashMultiplier: 1
   populationMultiplier: 1
   tileCostMultiplier: 1
@@ -2481,7 +2486,7 @@ GameObject:
   - component: {fileID: 1595157073}
   - component: {fileID: 1595157076}
   m_Layer: 0
-  m_Name: ResourceManager
+  m_Name: ResourceGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
