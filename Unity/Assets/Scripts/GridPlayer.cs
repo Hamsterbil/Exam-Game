@@ -77,7 +77,7 @@ public abstract class GridPlayer : MonoBehaviour
             }
             else if (this is Player player)
             {
-                if (player.cash > hexTile.cost)
+                if (player.money > hexTile.cost)
                 {
                     player.resourceManager.SubtractCash(hexTile.cost);
                 }

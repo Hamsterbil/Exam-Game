@@ -15,7 +15,7 @@ public class ResourceManager : MonoBehaviour
     public int militaryUnits; // Number of military units
     public int happiness; // Happiness value
     public int population; // Population value
-    public int cash; // Cash value
+    public int money; // Cash value
  
 
     public float cashMultiplier = 1.0f; // Default cash multiplier
@@ -28,10 +28,12 @@ public class ResourceManager : MonoBehaviour
     public event Action<int> OnHappinessChanged; // Event to notify when happiness changes
     void Start()
     {
-        player.cash = startingCash;
+        player.money = startingCash;
         player.population = startingPopulation;
         player.happiness = maxHappiness;
         player.military = startingMilitary;
+       
+     
     }
 public void AdjustGameParameters(float happiness)
     {
@@ -56,19 +58,19 @@ public void AdjustGameParameters(float happiness)
 
     public int GetCash()
     {
-        return player.cash;
+        return player.money;
     }
 
     public void AddCash(int amount)
     {
-        player.cash += amount;
-        cash = player.cash;
+        player.money += amount;
+        money = player.money;
     }
 
     public void SubtractCash(int amount)
     {
-        player.cash -= amount;
-        cash = player.cash;
+        player.money -= amount;
+        money = player.money;
     }
 
     public int GetPopulation()

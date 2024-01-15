@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TextManager : MonoBehaviour
 {
-    public Text cashText;
+    public Text moneyText;
     public Text populationText;
     public Text militaryText;
     public Text happinessText;
@@ -15,7 +15,7 @@ public class TextManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cashText.text = "" + player.cash;
+        moneyText.text = "" + player.money;
         populationText.text = "" + player.population;
         happinessText.text = "" + player.happiness + "%";
         militaryText.text = "" + player.military;

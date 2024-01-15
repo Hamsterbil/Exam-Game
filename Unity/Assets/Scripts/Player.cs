@@ -4,7 +4,7 @@ using UnityEngine;
 public class Player : GridPlayer
 {
     public override string playerTypeName => gameObject.name;
-    public int cash;
+    public int money;
     public int population;
     public int military;
     public int happiness;
