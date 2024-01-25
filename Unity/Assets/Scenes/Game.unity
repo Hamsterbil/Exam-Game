@@ -2233,7 +2233,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   cash: 0
   population: 0
-  military: 100
+  military: 0
   happiness: 0
   playerCamera: {fileID: 963194229}
   resourceManager: {fileID: 1034780181}
