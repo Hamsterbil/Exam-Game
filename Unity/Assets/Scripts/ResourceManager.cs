@@ -55,7 +55,7 @@ public class ResourceManager : MonoBehaviour
     {
         while (true)
         {
-            float militaryMultiplier = 2.0f - (player.happiness / 100.0f) + militaryGenerationMultiplier;
+            float militaryMultiplier = 1.0f - (player.happiness / 100.0f) + militaryGenerationMultiplier;
             int militaryToGenerate = Mathf.RoundToInt(generatePerInterval * militaryMultiplier);
             yield return new WaitForSeconds(generationInterval);
             AddMilitary(militaryToGenerate);

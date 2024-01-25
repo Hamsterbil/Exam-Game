@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c99d6fbab52cb4489b728fa6cad5494, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  waveAmount: 0.3
-  waveHeight: 0.5
-  waveSpeed: 0.75
+  waveAmount: 0.33
+  waveHeight: 0.24
+  waveSpeed: 1.22
   mapSizeFromCenter: 40
   mapExtraLayers: 5
   amountOfEnemies: 4
