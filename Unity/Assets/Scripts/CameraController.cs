@@ -3,7 +3,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public float moveSpeed; // Adjust the movement speed as needed
-    
+    public bool altClicked = false;
+
     // private bool isDragging = false;
     // private Vector3 dragStartPosition;
 
@@ -11,6 +12,12 @@ public class CameraController : MonoBehaviour
     {
         // MoveMouse();
         MoveWASD();
+
+        //if alt clicked, reverse bool
+        if (Input.GetKeyDown(KeyCode.LeftAlt) || Input.GetKeyDown(KeyCode.RightAlt))
+        {
+            altClicked = !altClicked;
+        }
     }
 
     public void FindPlayer(Player player)

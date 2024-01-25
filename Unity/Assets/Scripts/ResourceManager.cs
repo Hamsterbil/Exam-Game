@@ -18,11 +18,6 @@ public class ResourceManager : MonoBehaviour
 
     public int generatePerInterval; // Amount of resources to generate per interval
     public int generationInterval; // Interval to generate resources
-    
-    public event Action<int> OnCashChanged; // Event to notify when cash changes
-    public event Action<int> OnPopulationChanged; // Event to notify when population changes
-    public event Action<int> OnMilitaryUnitsChanged; // Event to notify when military units change
-    public event Action<int> OnHappinessChanged; // Event to notify when happiness changes
     void Start()
     {
         player.cash = startingCash;
@@ -60,7 +55,7 @@ public class ResourceManager : MonoBehaviour
     {
         while (true)
         {
-            float militaryMultiplier = 2.0f - (player.happiness / 100.0f) + militaryGenerationMultiplier;
+            float militaryMultiplier = 1.0f - (player.happiness / 100.0f) + militaryGenerationMultiplier;
             int militaryToGenerate = Mathf.RoundToInt(generatePerInterval * militaryMultiplier);
             yield return new WaitForSeconds(generationInterval);
             AddMilitary(militaryToGenerate);

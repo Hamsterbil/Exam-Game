@@ -48,6 +48,9 @@ public class HexGrid : MonoBehaviour
         AddEnemies(amountOfEnemies);
     }
 
+    void Start()
+    {}
+
     void Update()
     {
         foreach (HexTile tile in waterTiles)
@@ -67,10 +70,11 @@ public class HexGrid : MonoBehaviour
                 -0.5f,
                 0f
             );
-            tile.transform.position = new Vector3(
-                tile.transform.position.x,
-                Mathf.Clamp(tile.transform.position.y + yOffset, 0.1f, 1),
-                tile.transform.position.z
+            //clamp tile scale to be min 0,1 and max original scale
+            tile.transform.localScale = new Vector3(
+                tile.transform.localScale.x,
+                Mathf.Clamp(tileScale + yOffset, 0.1f, tileScale),
+                tile.transform.localScale.z
             );
         }
     }
@@ -110,7 +114,7 @@ public class HexGrid : MonoBehaviour
             GameObject EnemyPlayer = new GameObject("Enemy " + i + " ");
             Enemy enemy = EnemyPlayer.AddComponent<Enemy>();
             enemy.color = new Color(Random.value, Random.value, Random.value); // Generates random RGB color
-            enemy.enemyTurnTime = Random.Range(1, 5);
+            enemy.enemyTurnTime = Random.Range(5, 10);
         }
     }
 

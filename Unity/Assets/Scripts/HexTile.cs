@@ -14,6 +14,8 @@ public class HexTile : MonoBehaviour
     public List<HexTile> neighbors;
     public GridPlayer owner;
     public new Collider collider;
+    public CameraController cameraController;
+    public TilePopupUI popupUI;
 
     public void InitTile(int Q, int R, Color color, float scale, Transform parentObject)
     {
@@ -37,12 +39,23 @@ public class HexTile : MonoBehaviour
         //     color = Color.white;
         // }
         neighbors = GetNeighbors(GameObject.Find("HexGrid").GetComponent<HexGrid>().tiles, 1);
+        // popupUI = GameObject.Find("TilePopupUI").GetComponent<TilePopupUI>();
+        cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
         // GetComponentInChildren<MeshRenderer>().material.color = color;
     }
 
     protected virtual void Update()
     {
         GetComponentInChildren<MeshRenderer>().material.color = color;
+        // Update the popup position based on the mouse position
+        // popupUI.UpdatePopupPosition(Input.mousePosition);
+        // if (cameraController.altClicked)
+        // {
+        //     popupUI.image.enabled = true;
+        // } else
+        // {
+        //     popupUI.HidePopup();
+        // }
     }
 
     public void SetOwner(GridPlayer player, HexTile previousTile)
@@ -70,6 +83,10 @@ public class HexTile : MonoBehaviour
             {
                 changeScale(originalScale * 1.2f);
             }
+            // if (cameraController.altClicked)
+            // {
+            //     popupUI.ShowPopup(this);
+            // }
         }
     }
 
@@ -103,7 +120,7 @@ public class HexTile : MonoBehaviour
     }
 
     public void changeScale(float scale)
-    {        
+    {
         // Change the scale of the tile
         transform.localScale = new Vector3(1, scale, 1);
 
