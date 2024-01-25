@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TextManager : MonoBehaviour
 {
-    public Text moneyText;
+    public Text cashText;
     public Text populationText;
     public Text militaryText;
     public Text happinessText;

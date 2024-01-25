@@ -1724,7 +1724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83224863894ba6542a9218e9bf6b6dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyText: {fileID: 692932925}
+  cashText: {fileID: 692932925}
   populationText: {fileID: 805687439}
   militaryText: {fileID: 1517806389}
   happinessText: {fileID: 1153830174}
@@ -2131,7 +2131,7 @@ MonoBehaviour:
   grid: {fileID: 0}
   ownedTiles: []
   settings: {fileID: 0}
-  money: 0
+  cash: 0
   population: 0
   military: 100
   happiness: 0
@@ -2168,19 +2168,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1034780179}
-  startingCash: 0
-  startingPopulation: 0
-  startingMilitary: 0
-  startingHappiness: 0
+  startingCash: 10000
+  startingPopulation: 10000
+  startingMilitary: 1000
+  startingHappiness: 100
   maxHappiness: 0
   maxMilitary: 0
-  militaryUnits: 0
-  happiness: 0
-  population: 0
-  money: 0
-  cashMultiplier: 1
-  populationMultiplier: 1
-  tileCostMultiplier: 1
+  cashGenerationMultiplier: 1.5
+  populationGenerationMultiplier: 1.5
+  militaryGenerationMultiplier: 1.5
+  generatePerInterval: 100
+  generationInterval: 1
 --- !u!114 &1034780182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2193,9 +2191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4de393b3e8a60f47b10040d8b782999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  militaryGeneration: {fileID: 0}
-  populationGeneration: {fileID: 0}
-  cashGeneration: {fileID: 0}
+  resourceManager: {fileID: 0}
   cashUpgrades: 1
   populationUpgrades: 1
   militaryUpgrades: 1
@@ -2937,10 +2933,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1595157074}
-  - component: {fileID: 1595157073}
-  - component: {fileID: 1595157076}
-  - component: {fileID: 1595157078}
-  - component: {fileID: 1595157077}
   m_Layer: 0
   m_Name: ResourceGenerator
   m_TagString: Untagged
@@ -2948,22 +2940,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1595157073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1595157072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718009226fe58524e9ccaa305a79e2c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resourceManager: {fileID: 1034780181}
-  cashPerInterval: 100
-  cashGenerationInterval: 1
-  bonusCashMultiplier: 1
 --- !u!4 &1595157074
 Transform:
   m_ObjectHideFlags: 0
@@ -2979,50 +2955,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1595157076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1595157072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e01b9af8bf06eaf47908b99aa6c5e933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resourceManager: {fileID: 1034780181}
-  populationPerInterval: 100
-  populationGenerationInterval: 1
-  bonusPopulationMultiplier: 1
---- !u!114 &1595157077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1595157072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c177352fa1e708840a4640f2609c81d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1595157078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1595157072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe51f8424a45c044b7dea8c0b369738, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resourceManager: {fileID: 1034780181}
-  MilitaryPerInterval: 100
-  MilitaryGenerationInterval: 1
-  bonusMilitaryMultiplier: 1
 --- !u!1 &1762207755
 GameObject:
   m_ObjectHideFlags: 0
@@ -3422,7 +3354,7 @@ GameObject:
   - component: {fileID: 2103541196}
   - component: {fileID: 2103541195}
   m_Layer: 5
-  m_Name: MoneyBar
+  m_Name: CashBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
