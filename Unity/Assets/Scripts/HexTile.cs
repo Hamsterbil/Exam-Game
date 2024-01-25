@@ -171,8 +171,8 @@ public class HexTile : MonoBehaviour
         return tileNeighbors;
     }
 
-    public void ChangeCost(int multiplier, int costChange)
+    public void ChangeCost(float multiplier, int costChange)
     {
-        cost = cost * multiplier + costChange;
+        cost = Mathf.RoundToInt(cost * multiplier) + costChange;
     }
 }
