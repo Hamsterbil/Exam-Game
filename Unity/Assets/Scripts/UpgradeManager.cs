@@ -1,18 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpgradeManager : MonoBehaviour 
+public class UpgradeManager : MonoBehaviour
 {
     public ResourceManager resourceManager;
     public int cashUpgrades = 1;
     public int populationUpgrades = 1;
     public int militaryUpgrades = 1;
 
-    public void ApplyCashUpgrade(int cashMultiplierUpgrade)
+    public void ApplyCashUpgrade(string cashMultiplierAndPrice)
     {
-        cashUpgrades++;
-        resourceManager.cashGenerationMultiplier = (cashMultiplierUpgrade * cashUpgrades);
-        
+        string[] cashMultiplierAndPriceArray = cashMultiplierAndPrice.Split(',');
+        int cashMultiplierUpgrade = int.Parse(cashMultiplierAndPriceArray[0]);
+        int cashUpgradePrice = int.Parse(cashMultiplierAndPriceArray[1]);
+
+        if (resourceManager.GetCash() > cashUpgradePrice)
+        {
+            resourceManager.SubtractCash(cashUpgradePrice);
+            resourceManager.cashGenerationMultiplier = (cashMultiplierUpgrade * cashUpgrades);
+            cashUpgrades++;
+        }
     }
 
     public void ApplyPopulationUpgrade(int populationMultiplierUpgrade)
@@ -26,6 +33,6 @@ public class UpgradeManager : MonoBehaviour
     {
         militaryUpgrades++;
         resourceManager.militaryGenerationMultiplier = (militaryMultiplierUpgrade * militaryUpgrades);
-        
+
     }
 }
