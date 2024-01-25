@@ -2133,7 +2133,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   cash: 0
   population: 0
-  military: 100
+  military: 0
   happiness: 0
   playerCamera: {fileID: 963194229}
   resourceManager: {fileID: 1034780181}
@@ -2172,11 +2172,11 @@ MonoBehaviour:
   startingPopulation: 10000
   startingMilitary: 1000
   startingHappiness: 100
-  maxHappiness: 0
+  maxHappiness: 100
   maxMilitary: 0
-  cashGenerationMultiplier: 1.5
-  populationGenerationMultiplier: 1.5
-  militaryGenerationMultiplier: 1.5
+  cashGenerationMultiplier: 1
+  populationGenerationMultiplier: 1
+  militaryGenerationMultiplier: 0
   generatePerInterval: 100
   generationInterval: 1
 --- !u!114 &1034780182
