@@ -36,6 +36,7 @@ public class Player : GridPlayer
             }
         }
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
+        HighlightNeighbors();
     }
 
     public void HighlightNeighbors()
@@ -46,7 +47,7 @@ public class Player : GridPlayer
             {
                 if (neighbor != null && neighbor.traversable && neighbor.owner != this)
                 {
-                    neighbor.color = Color.red;
+                    neighbor.changeColor(Color.red);
                 }
             }
         }

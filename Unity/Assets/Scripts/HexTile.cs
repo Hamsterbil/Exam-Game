@@ -22,9 +22,9 @@ public class HexTile : MonoBehaviour
         q = Q;
         r = R;
         name = typeName + " (" + q + "," + r + ")";
-        originalColor = color;
         changeColor(color);
         changeScale(scale);
+        originalColor = color;
         originalScale = scale;
 
         transform.position = new Vector3(q * 1.5f, 0, r * Mathf.Sqrt(3) + q * Mathf.Sqrt(3) / 2);
@@ -47,14 +47,14 @@ public class HexTile : MonoBehaviour
     protected virtual void Update()
     {
         // Update the popup position based on the mouse position
-        popupUI.UpdatePopupPosition(Input.mousePosition);
-        if (cameraController.altClicked)
-        {
-            popupUI.image.enabled = true;
-        } else
-        {
-            popupUI.HidePopup();
-        }
+        // popupUI.UpdatePopupPosition(Input.mousePosition);
+        // if (cameraController.altClicked)
+        // {
+        //     popupUI.image.enabled = true;
+        // } else
+        // {
+        //     popupUI.HidePopup();
+        // }
     }
 
     public void SetOwner(GridPlayer player, HexTile previousTile)
@@ -82,10 +82,10 @@ public class HexTile : MonoBehaviour
             {
                 changeScale(originalScale * 1.2f);
             }
-            if (cameraController.altClicked)
-            {
-                popupUI.ShowPopup(this);
-            }
+            // if (cameraController.altClicked)
+            // {
+            //     popupUI.ShowPopup(this);
+            // }
         }
     }
 

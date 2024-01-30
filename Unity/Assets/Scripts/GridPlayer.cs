@@ -98,9 +98,6 @@ public abstract class GridPlayer : MonoBehaviour
         HexTile playerTile = Instantiate(ownedTilePrefab);
         playerTile.InitTile(hexTile.q, hexTile.r, color, hexTile.originalScale, transform); // Pass the original values to the new tile
 
-        playerTile.popupUI = hexTile.popupUI;
-
-
         // Replace hexTile from the grid's tiles list if it exists
         if (grid.tiles.Contains(hexTile))
         {
@@ -125,7 +122,7 @@ public abstract class GridPlayer : MonoBehaviour
             {
                 grid.UpdateTileCosts();
             }
-            currentPlayer.HighlightNeighbors();
+            // currentPlayer.HighlightNeighbors();
         }
 
         playerTile.SetOwner(this, hexTile);
