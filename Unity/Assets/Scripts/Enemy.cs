@@ -7,7 +7,7 @@ public class Enemy : GridPlayer
     public float enemyTurnTime;
 
     public override void StartPlayer()
-    {
+    {        
         StartCoroutine(EnemyTurn());
     }
 

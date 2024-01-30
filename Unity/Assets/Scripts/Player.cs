@@ -16,6 +16,7 @@ public class Player : GridPlayer
     public override void StartPlayer()
     {
         playerCamera.FindPlayer(this);
+        HighlightNeighbors();
     }
 
     public override void UpdatePlayer()
@@ -35,11 +36,9 @@ public class Player : GridPlayer
             }
         }
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
-
-        HighlightNeighbors();
     }
 
-    private void HighlightNeighbors()
+    public void HighlightNeighbors()
     {
         foreach (HexTile ownedTile in ownedTiles)
         {

@@ -22,8 +22,8 @@ public class HexTile : MonoBehaviour
         q = Q;
         r = R;
         name = typeName + " (" + q + "," + r + ")";
-        this.color = color;
         originalColor = color;
+        changeColor(color);
         changeScale(scale);
         originalScale = scale;
 
@@ -46,16 +46,15 @@ public class HexTile : MonoBehaviour
 
     protected virtual void Update()
     {
-        GetComponentInChildren<MeshRenderer>().material.color = color;
         // Update the popup position based on the mouse position
-        // popupUI.UpdatePopupPosition(Input.mousePosition);
-        // if (cameraController.altClicked)
-        // {
-        //     popupUI.image.enabled = true;
-        // } else
-        // {
-        //     popupUI.HidePopup();
-        // }
+        popupUI.UpdatePopupPosition(Input.mousePosition);
+        if (cameraController.altClicked)
+        {
+            popupUI.image.enabled = true;
+        } else
+        {
+            popupUI.HidePopup();
+        }
     }
 
     public void SetOwner(GridPlayer player, HexTile previousTile)
@@ -70,7 +69,7 @@ public class HexTile : MonoBehaviour
         if (traversable)
         {
             // originalScale = transform.localScale;
-            color = Color.Lerp(color, Color.black, 0.2f);
+            changeColor(Color.Lerp(color, Color.black, 0.2f));
             if (owner != null)
             {
                 //Change scale of every tile with the same owner
@@ -83,10 +82,10 @@ public class HexTile : MonoBehaviour
             {
                 changeScale(originalScale * 1.2f);
             }
-            // if (cameraController.altClicked)
-            // {
-            //     popupUI.ShowPopup(this);
-            // }
+            if (cameraController.altClicked)
+            {
+                popupUI.ShowPopup(this);
+            }
         }
     }
 
@@ -94,7 +93,7 @@ public class HexTile : MonoBehaviour
     {
         if (traversable)
         {
-            color = originalColor;
+            changeColor(originalColor);
             if (owner != null)
             {
                 //Change scale of every tile with the same owner
@@ -132,6 +131,12 @@ public class HexTile : MonoBehaviour
             // Change the position of the collider
             transform.GetChild(i).localPosition = new Vector3(0, 1 + 0.5f / scale, 0);
         }
+    }
+
+    public void changeColor(Color color)
+    {
+        this.color = color;
+        GetComponentInChildren<MeshRenderer>().material.color = color;
     }
 
     public bool EligibleForPurchase(GridPlayer player)

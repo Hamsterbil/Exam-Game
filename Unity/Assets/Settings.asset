@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c99d6fbab52cb4489b728fa6cad5494, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
+  enemyTilePrefab: {fileID: 8129890943631657260, guid: 19582e8c47a6f8842abd7c345c7f7674, type: 3}
   waveAmount: 0.33
   waveHeight: 0.24
   waveSpeed: 1.22

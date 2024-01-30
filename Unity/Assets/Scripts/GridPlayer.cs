@@ -57,16 +57,16 @@ public abstract class GridPlayer : MonoBehaviour
 
     protected bool CanAddTile(HexTile hexTile)
     {
-        //kdkd
         if (hexTile.EligibleForPurchase(this))
         {
             if (hexTile.owner != null)
             {
                 if (this is Player player)
                 {
-                    if (player.military > hexTile.cost)
+                    if (player.military > hexTile.cost && player.cash > hexTile.cost)
                     {
                         player.resourceManager.SubtractMilitary(hexTile.cost);
+                        player.resourceManager.SubtractCash(hexTile.cost);
                     }
                     else
                     {
@@ -99,7 +99,7 @@ public abstract class GridPlayer : MonoBehaviour
         playerTile.InitTile(hexTile.q, hexTile.r, color, hexTile.originalScale, transform); // Pass the original values to the new tile
 
         playerTile.popupUI = hexTile.popupUI;
-        
+
 
         // Replace hexTile from the grid's tiles list if it exists
         if (grid.tiles.Contains(hexTile))
@@ -125,6 +125,7 @@ public abstract class GridPlayer : MonoBehaviour
             {
                 grid.UpdateTileCosts();
             }
+            currentPlayer.HighlightNeighbors();
         }
 
         playerTile.SetOwner(this, hexTile);

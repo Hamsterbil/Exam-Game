@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Settings : ScriptableObject
 {
+    public HexTile enemyTilePrefab;
     [Range(0, 1)]
     public float waveAmount;
     [Range(0.1f, 2)]
