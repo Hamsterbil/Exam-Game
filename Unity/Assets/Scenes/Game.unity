@@ -778,7 +778,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &269615253
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1385,7 +1385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &431488989
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1994,6 +1994,8 @@ MonoBehaviour:
   populationText: {fileID: 805687439}
   militaryText: {fileID: 1517806389}
   happinessText: {fileID: 1153830174}
+  cashUpgradeText: {fileID: 169208817}
+  upgradeManager: {fileID: 1034780182}
   player: {fileID: 1034780179}
 --- !u!4 &852323100
 Transform:
@@ -2431,6 +2433,7 @@ MonoBehaviour:
   cashUpgrades: 1
   populationUpgrades: 1
   militaryUpgrades: 1
+  actualUpgradePrice: 1000
 --- !u!1 &1106313736
 GameObject:
   m_ObjectHideFlags: 0
