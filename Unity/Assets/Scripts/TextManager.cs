@@ -25,4 +25,8 @@ public class TextManager : MonoBehaviour
         militaryText.text = "" + player.military;
         cashUpgradeText.text = "Cost: " + upgradeManager.actualUpgradePrice;
 }
+
+
+
+
 }

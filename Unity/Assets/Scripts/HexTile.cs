@@ -39,7 +39,7 @@ public class HexTile : MonoBehaviour
         //     color = Color.white;
         // }
         neighbors = GetNeighbors(GameObject.Find("HexGrid").GetComponent<HexGrid>().tiles, 1);
-        popupUI = GameObject.Find("TilePopupUI").GetComponent<TilePopupUI>();
+        // popupUI = GameObject.Find("TilePopupUI").GetComponent<TilePopupUI>();
         cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
         // GetComponentInChildren<MeshRenderer>().material.color = color;
     }

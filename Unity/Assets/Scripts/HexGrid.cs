@@ -53,30 +53,30 @@ public class HexGrid : MonoBehaviour
 
     void Update()
     {
-        // foreach (HexTile tile in waterTiles)
-        // {
-        //     float yOffset = Mathf.Clamp(
-        //         (
-        //             Mathf.Sin(Time.time * settings.waveSpeed + tile.q * settings.waveAmount)
-        //             + Mathf.Cos(
-        //                 0.5f * Time.time * settings.waveSpeed + tile.q * settings.waveAmount
-        //             )
-        //             + Mathf.Sin(
-        //                 0.25f * Time.time * settings.waveSpeed
-        //                     + tile.q * settings.waveAmount * 3f
-        //                     + tile.r * settings.waveAmount
-        //             )
-        //         ) * settings.waveHeight,
-        //         -0.5f,
-        //         0f
-        //     );
-        //     //clamp tile scale to be min 0,1 and max original scale
-        //     tile.transform.localScale = new Vector3(
-        //         tile.transform.localScale.x,
-        //         Mathf.Clamp(tileScale + yOffset, 0.1f, tileScale),
-        //         tile.transform.localScale.z
-        //     );
-        // }
+        foreach (HexTile tile in waterTiles)
+        {
+            float yOffset = Mathf.Clamp(
+                (
+                    Mathf.Sin(Time.time * settings.waveSpeed + tile.q * settings.waveAmount)
+                    + Mathf.Cos(
+                        0.5f * Time.time * settings.waveSpeed + tile.q * settings.waveAmount
+                    )
+                    + Mathf.Sin(
+                        0.25f * Time.time * settings.waveSpeed
+                            + tile.q * settings.waveAmount * 3f
+                            + tile.r * settings.waveAmount
+                    )
+                ) * settings.waveHeight,
+                -0.5f,
+                0f
+            );
+            //clamp tile scale to be min 0,1 and max original scale
+            tile.transform.localScale = new Vector3(
+                tile.transform.localScale.x,
+                Mathf.Clamp(tileScale + yOffset, 0.1f, tileScale),
+                tile.transform.localScale.z
+            );
+        }
     }
 
     private void CreateMap()

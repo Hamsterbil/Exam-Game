@@ -16,7 +16,7 @@ MonoBehaviour:
   waveAmount: 0.33
   waveHeight: 0.24
   waveSpeed: 1.22
-  mapSizeFromCenter: 40
+  mapSizeFromCenter: 20
   mapExtraLayers: 5
   amountOfEnemies: 4
   enemyTurnTime: 0.01
