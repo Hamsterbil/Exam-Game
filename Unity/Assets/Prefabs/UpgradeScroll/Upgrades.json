@@ -47,5 +47,23 @@
         "affect": {
             "militaryMax": 100
         }
-    }    
+    },
+    {
+        "name": "Nuclear power plant",
+        "price": 1000000,
+        "priceIncrease": 0.15,
+        "affect": {
+            "cash": 10000,
+            "happiness": -10
+        }
+    },
+    {
+        "name": "Nuclear bomb",
+        "price": 10000000,
+        "priceIncrease": 0.15,
+        "affect": {
+            "military": 100000
+        }
+    }
+
 ]
