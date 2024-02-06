@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Farm",
+        "description": "Increase cash production by 100",
+        "price": 100,      
+        "priceIncrease": 0.15,  
+        "affect": {
+            "cash": 100
+        }
+    },
+    {
+        "name": "Factory",
+        "description": "Increase cash production by 1000",
+        "price": 1000,
+        "priceIncrease": 0.15,
+        "affect": {
+            "cash": 1000,
+            "happiness": -10
+        }
+    },
+    {
+        "name": "Hospitals",
+        "description": "Increase happiness and population, but decreases cash production",
+        "price": 10000,
+        "priceIncrease": 0.15,
+        "affect": {
+            "cash": -100,
+            "happiness": 10,
+            "population": 100
+        }
+    },
+    {
+        "name": "Happy troops",
+        "description": "Increase happiness and military",
+        "price": 10000,    
+        "priceIncrease": 0.15,   
+        "affect": {
+            "happiness": 10,
+            "military": 100
+        }
+    },
+    {
+        "name": "Conscription",
+        "price": 100000,
+        "priceIncrease": 0.15,
+        "affect": {
+            "militaryMax": 100
+        }
+    }
+]

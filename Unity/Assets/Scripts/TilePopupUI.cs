@@ -6,35 +6,39 @@ public class TilePopupUI : MonoBehaviour
     public Image image;
     public Text nameText;
     public Text costText;
+    public bool updatePosition;
 
     void Start()
     {
-        image.enabled = false;
+        
+    }
+
+    void Update()
+    {
+        if (updatePosition)
+        {
+            transform.position = Input.mousePosition;
+        }
     }
 
     // Display the popup with tile information
     public void ShowPopup(HexTile hexTile)
     {
         image.enabled = true;
-
+        nameText.enabled = true;
+        costText.enabled = true;
+        updatePosition = true;
 
         nameText.text = hexTile.name;
         costText.text = "Cost: " + hexTile.cost.ToString();
-        // incomeText.text = "Income: " + hexTile.Income().ToString();
-
-        // Set the popup position based on the hexTile position
-        Vector3 popupPosition = Camera.main.WorldToScreenPoint(hexTile.transform.position);
-        transform.position = popupPosition;
     }
 
     // Hide the popup
     public void HidePopup()
     {
         image.enabled = false;
-    }
-
-    public void UpdatePopupPosition(Vector3 mousePosition)
-    {
-        transform.position = mousePosition;
+        nameText.enabled = false;
+        costText.enabled = false;
+        updatePosition = false;
     }
 }
