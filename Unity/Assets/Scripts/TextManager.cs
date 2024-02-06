@@ -10,10 +10,7 @@ public class TextManager : MonoBehaviour
     public Text populationText;
     public Text militaryText;
     public Text happinessText;
-    public TMP_Text cashUpgradeText1;
-    public TMP_Text cashUpgradeText2;
     public UpgradeManager upgradeManager;
-
 
     public Player player;
 
@@ -24,11 +21,5 @@ public class TextManager : MonoBehaviour
         populationText.text = "" + player.population;
         happinessText.text = "" + player.happiness + "%";
         militaryText.text = "" + player.military;
-        cashUpgradeText1.text = "Cost: " + upgradeManager.actualUpgradePrice;
-        cashUpgradeText2.text = "Cost: " + upgradeManager.actualUpgradePrice;
-}
-
-
-
-
+    }
 }

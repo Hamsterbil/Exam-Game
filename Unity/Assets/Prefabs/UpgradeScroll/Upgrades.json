@@ -41,10 +41,11 @@
     },
     {
         "name": "Conscription",
+        "description": "Increase maximum military",
         "price": 100000,
         "priceIncrease": 0.15,
         "affect": {
             "militaryMax": 100
         }
-    }
+    }    
 ]
