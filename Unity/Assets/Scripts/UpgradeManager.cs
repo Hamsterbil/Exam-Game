@@ -7,6 +7,8 @@ public class UpgradeManager : MonoBehaviour
     public int cashUpgrades = 1;
     public int populationUpgrades = 1;
     public int militaryUpgrades = 1;
+    public int actualUpgradePrice;
+
 
     public void ApplyCashUpgrade(string cashMultiplierAndPrice)
     {
@@ -14,11 +16,16 @@ public class UpgradeManager : MonoBehaviour
         int cashMultiplierUpgrade = int.Parse(cashMultiplierAndPriceArray[0]);
         int cashUpgradePrice = int.Parse(cashMultiplierAndPriceArray[1]);
 
-        if (resourceManager.GetCash() > cashUpgradePrice)
+        // Calculate the actual price based on the number of upgrades purchased
+        actualUpgradePrice = cashUpgradePrice * (cashUpgrades);
+
+        if (resourceManager.GetCash() >= actualUpgradePrice)
         {
-            resourceManager.SubtractCash(cashUpgradePrice);
-            resourceManager.cashGenerationMultiplier = (cashMultiplierUpgrade * cashUpgrades);
             cashUpgrades++;
+            resourceManager.SubtractCash(actualUpgradePrice);
+            resourceManager.cashGenerationMultiplier = cashMultiplierUpgrade * (cashUpgrades);
+            
+            actualUpgradePrice = cashUpgradePrice * (cashUpgrades);            
         }
     }
 
