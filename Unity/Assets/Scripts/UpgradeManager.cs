@@ -29,6 +29,25 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+     public void ApplyCashUpgrade2(string cashMultiplierAndPrice)
+    {
+        string[] cashMultiplierAndPriceArray = cashMultiplierAndPrice.Split(',');
+        int cashMultiplierUpgrade = int.Parse(cashMultiplierAndPriceArray[0]);
+        int cashUpgradePrice = int.Parse(cashMultiplierAndPriceArray[1]);
+
+        // Calculate the actual price based on the number of upgrades purchased
+        actualUpgradePrice = cashUpgradePrice * (cashUpgrades);
+
+        if (resourceManager.GetCash() >= actualUpgradePrice)
+        {
+            cashUpgrades++;
+            resourceManager.SubtractCash(actualUpgradePrice);
+            resourceManager.cashGenerationMultiplier = cashMultiplierUpgrade * (cashUpgrades);
+            
+            actualUpgradePrice = cashUpgradePrice * (cashUpgrades);            
+        }
+    }
+
     public void ApplyPopulationUpgrade(int populationMultiplierUpgrade)
     {
         populationUpgrades++;
