@@ -4,7 +4,7 @@ using System.Collections;
 public class ResourceManager : MonoBehaviour
 {
     public Player player;
-    
+
     public int startingCash;
     public int startingPopulation;
     public int startingMilitary;
@@ -15,9 +15,12 @@ public class ResourceManager : MonoBehaviour
     public float cashGenerationMultiplier; // Multiplier for cash generation
     public float populationGenerationMultiplier; // Multiplier for population generation
     public float militaryGenerationMultiplier; // Multiplier for military generation
+    public float happinessDecreaseInterval = 5.0f; // Amount of happiness to decrease per interval
 
     public int generatePerInterval; // Amount of resources to generate per interval
     public int generationInterval; // Interval to generate resources
+    public int happinesDecreaseAmount = 1; // Amount of happiness to decrease per interval
+
     void Start()
     {
         player.cash = startingCash;
@@ -27,6 +30,7 @@ public class ResourceManager : MonoBehaviour
         StartCoroutine(GenerateCash());
         StartCoroutine(GeneratePopulation());
         StartCoroutine(GenerateMilitary());
+        StartCoroutine(DecreaseHappiness());
     }
 
     public IEnumerator GenerateCash()
@@ -61,10 +65,19 @@ public class ResourceManager : MonoBehaviour
             AddMilitary(militaryToGenerate);
         }
     }
-    
+
+    public IEnumerator DecreaseHappiness()
+    {
+        while (true)
+        {
+            ModifyHappiness(-happinesDecreaseAmount); // Decrease happiness
+            yield return new WaitForSeconds(happinessDecreaseInterval);
+        }
+    }
+
     void Update()
     {
-     
+
     }
 
     public int GetCash()
@@ -98,7 +111,7 @@ public class ResourceManager : MonoBehaviour
     {
         player.population -= amount;
     }
-  
+
     public void AddMilitary(int amount)
     {
         player.military += amount;
