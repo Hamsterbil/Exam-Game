@@ -18,7 +18,7 @@ MonoBehaviour:
   waveSpeed: 1.22
   mapSizeFromCenter: 15
   mapExtraLayers: 5
-  amountOfEnemies: 4
+  amountOfEnemies: 0
   enemyTurnTime: 0.01
   perlinScale: 8
   perlinScale1: 100
@@ -26,6 +26,6 @@ MonoBehaviour:
   perlinPow: 1.5
   perlinWaterLevel: 0.15
   perlinLandLevel: 0.15
-  perlinOffsetX: 100
+  perlinOffsetX: 168.58
   perlinOffsetZ: 100
   randomizeOffset: 1

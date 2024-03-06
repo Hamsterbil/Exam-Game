@@ -19,6 +19,16 @@
         }
     },
     {
+        "name": "Stores",
+        "description": "Increase cash production by 1000",
+        "price": 1000,
+        "priceIncrease": 0.15,
+        "affect": {
+            "cash": 500,
+            "happiness": 20
+        }
+    },
+    {
         "name": "Hospitals",
         "description": "Increase happiness and population, but decreases cash production",
         "price": 10000,
@@ -30,7 +40,7 @@
         }
     },
     {
-        "name": "Happy troops",
+        "name": "Troops",
         "description": "Increase happiness and military",
         "price": 10000,    
         "priceIncrease": 0.15,   
@@ -50,6 +60,7 @@
     },
     {
         "name": "Nuclear power plant",
+        "description": "Increase cash production and happiness, but decreases population",
         "price": 1000000,
         "priceIncrease": 0.15,
         "affect": {
@@ -59,6 +70,7 @@
     },
     {
         "name": "Nuclear bomb",
+        "description": "Increase military",
         "price": 10000000,
         "priceIncrease": 0.15,
         "affect": {

@@ -397,8 +397,11 @@ MonoBehaviour:
   title: {fileID: 6689987062895509965}
   description: {fileID: 0}
   price: {fileID: 6689987061481736169}
+  upgradeTypes: []
+  priceIncrease: 0
   icon: {fileID: 6689987061734204813}
   button: {fileID: 6689987062181625918}
+  upgradeManager: {fileID: 0}
 --- !u!1 &6689987062895509967
 GameObject:
   m_ObjectHideFlags: 0

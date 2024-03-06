@@ -178,17 +178,15 @@ public class HexGrid : MonoBehaviour
             z += z_offset;
         }
         float noise =
-            1 * Mathf.PerlinNoise(1 * (x / settings.perlinScale), 1 * (z / settings.perlinScale))
-            + 0.5f
-                * Mathf.PerlinNoise(
-                    2 * (x / settings.perlinScale1),
-                    2 * (z / settings.perlinScale1)
-                )
-            + 0.25f
-                * Mathf.PerlinNoise(
-                    4 * (x / settings.perlinScale2),
-                    4 * (z / settings.perlinScale2)
-                );
+                Mathf.PerlinNoise(
+                    (x / settings.perlinScale),
+                    (z / settings.perlinScale)) + 0.5f
+              * Mathf.PerlinNoise(
+                2 * (x / settings.perlinScale1),
+                2 * (z / settings.perlinScale1)) + 0.25f
+              * Mathf.PerlinNoise(
+                4 * (x / settings.perlinScale2),
+                4 * (z / settings.perlinScale2));
         noise = noise / (1 + 0.5f + 0.25f);
 
         return Mathf.Pow(noise, settings.perlinPow);

@@ -3,12 +3,6 @@ This is a small game made for our programming class.
 <br>
 A combination of the idle genre with strategic elements using Hexagons.
 
-### Game explained
-Something ../
-
-## Specifications we set for ourselves while creating it:
-What we envision the game to end up like.
-
 ### Environment:
 > **Map Description:** A set sized map, consisting of hexagonal tiles. Player starts by owning one tile ../
 
@@ -23,23 +17,19 @@ What we envision the game to end up like.
 > * Village
 > * Treasure
 > 
-> Tiles are hexagonal ../
+> Tiles are hexagonal
 
 ### Player: 
 
-> The player ../
+> The player spawns a random place on the map and can zoom + look around, while expanding to neighbor tiles.
  
 > **Movement:** Player is able to move by buying tiles adjacent to already owned tiles using cash.
 
 > **City Management:** By clicking on owned tiles, purchaseable upgrades and perks are shown, as well as game stats.
 
-> **Interactions:** Upgrades and perks can be bought if the player has enough cash. The player can move by expanding into normal or enemy tiles, by interacting with said tiles.
+> **Interactions:** Upgrades can be bought if the player has enough cash. The player can move by expanding into normal or enemy tiles, by interacting with said tiles.
 
-> **Upgrades:** Upgrades are used for ../ <br>
-> * 
-
-> **Perks:** Perks are used for ../ <br>
-> * 
+> **Upgrades:** Upgrades are used for updating stats, both positive and negative <br>
  
 ### Enemy:
 
@@ -71,34 +61,49 @@ What we envision the game to end up like.
 ### Victory:
 
 > If the player removes every enemy tile, they win. <br>
-
 > The player loses if enemies overtake all player tiles, or player loses all population
-
-
-# Actor table
-// Insert stuff
 
 # MuSCoW
 ## Must
-> **Environment:** <br>
+> **Environment** <br>
 > An entire world map created for the player to see <br>
 > Must have at least grass tiles. 
-> 
-> 
 
 > **Player** <br>
 > Must be able to generate cash and buy adjacent tiles <br>
-> Must be able to click on owned tiles to see future perks and upgrades
+> Must be able to look around map
 
 > **Enemy** <br>
 > Must be able to expand territory
 
 ## Should
-
+> **Environment** <br>
+> Should have multiple tiles
+>
+> **Player** <br>
+> Should have multiple available upgrades <br>
+> Should be able to see tile information
+>
+> **Enemy** <br>
+> Should expand towards player <br>
+> Should be balanced
 
 ## Could
+> **Environment** <br>
+> Could have biomes and landscape <br>
+> Could change size based on difficulty
 
 ## Would
+> **Environment** <br>
+> Would be nice to have fog of war <br>
+> Woudl want to have colored outlines for tile borders
+
+> **Game** <br>
+> Would want it to be completely balanced
 
 # Class Diagram - PUML
-![Class Diagram](Game.puml)
+> Not updated... Very old <br>
+![Class Diagram](Class.png)
+
+# Flow Diagram
+![Flow Diagram](Flow.png)
