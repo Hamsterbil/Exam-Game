@@ -26,6 +26,6 @@ MonoBehaviour:
   perlinPow: 1.5
   perlinWaterLevel: 0.15
   perlinLandLevel: 0.15
-  perlinOffsetX: 100
+  perlinOffsetX: 168.58
   perlinOffsetZ: 100
   randomizeOffset: 1

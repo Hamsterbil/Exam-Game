@@ -92,9 +92,6 @@ A combination of the idle genre with strategic elements using Hexagons.
 > **Environment** <br>
 > Could have biomes and landscape <br>
 > Could change size based on difficulty
->
-> **Player** <br>
-> Could 
 
 ## Would
 > **Environment** <br>
@@ -109,4 +106,4 @@ A combination of the idle genre with strategic elements using Hexagons.
 ![Class Diagram](Class.png)
 
 # Flow Diagram
-![Flow Diagram]()
+![Flow Diagram](Flow.png)
