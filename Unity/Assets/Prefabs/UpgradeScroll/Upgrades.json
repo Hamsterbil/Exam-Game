@@ -50,6 +50,7 @@
     },
     {
         "name": "Nuclear power plant",
+        "description": "Increase cash production and happiness, but decreases population",
         "price": 1000000,
         "priceIncrease": 0.15,
         "affect": {
@@ -59,6 +60,7 @@
     },
     {
         "name": "Nuclear bomb",
+        "description": "Increase military",
         "price": 10000000,
         "priceIncrease": 0.15,
         "affect": {

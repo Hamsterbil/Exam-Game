@@ -16,17 +16,17 @@ public class UpgradeCardGeneration : MonoBehaviour
     {
         string json = File.ReadAllText(Path.Combine(Application.dataPath, pathToJson));
 
-        JArray UpgradeArray = JArray.Parse(json);
+        JArray upgradeArray = JArray.Parse(json);
 
-        foreach (JObject Upgrade in UpgradeArray)
+        foreach (JObject upgrade in upgradeArray)
         {
-            string title = Upgrade.GetValue("name").ToString();
-            string description = Upgrade.GetValue("description").ToString();
-            int price = (int)Upgrade.GetValue("price");
-            int priceIncrease = (int)Upgrade.GetValue("priceIncrease");
-            
+            string title = upgrade.GetValue("name").ToString();
+            string description = upgrade.GetValue("description").ToString();
+            int price = (int)upgrade.GetValue("price");
+            int priceIncrease = (int)upgrade.GetValue("priceIncrease");
+            // string[] upgradeTypes = new string[()];
             List<string> upgradeTypes = new List<string>();
-            foreach (var upgradeType in Upgrade.GetValue("affect"))
+            foreach (var upgradeType in upgrade.GetValue("affect"))
             {
                 upgradeTypes.Add(upgradeType.ToString());
             }

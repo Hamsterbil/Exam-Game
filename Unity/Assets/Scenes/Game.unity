@@ -334,6 +334,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57855172}
   m_CullTransparentMesh: 1
+--- !u!224 &97808408 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6689987062181625912, guid: 5a5ae56fc78e67b4087545e12f8d21e9, type: 3}
+  m_PrefabInstance: {fileID: 6689987062749718619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &166004107
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,7 +1036,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 685420525}
   m_HandleRect: {fileID: 685420524}
   m_Direction: 3
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3910,6 +3915,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1526244091}
+  - {fileID: 97808408}
   m_Father: {fileID: 937535455}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4799,7 +4805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6689987062181625912, guid: 5a5ae56fc78e67b4087545e12f8d21e9, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6689987062181625912, guid: 5a5ae56fc78e67b4087545e12f8d21e9, type: 3}
       propertyPath: m_AnchorMax.x

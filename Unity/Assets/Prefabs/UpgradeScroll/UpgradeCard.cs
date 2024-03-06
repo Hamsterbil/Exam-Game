@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.IO;
 using UnityEngine;
+using Newtonsoft.Json.Linq;
 using UnityEngine.UI;
 using TMPro;
 using TMPro.Examples;
@@ -35,7 +38,7 @@ public class UpgradeCard : MonoBehaviour
         this.price.text = "Price: " + price.ToString();
         this.priceIncrease = priceIncrease;
         this.upgradeTypes = upgradeTypes;
-        this.icon.sprite = Resources.Load<Sprite>("Upgrades/" + title);
+        this.icon.sprite = Resources.Load<Sprite>("Images/" + title);
     }
 
     public void OnClick()
